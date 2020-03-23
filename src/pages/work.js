@@ -5,7 +5,7 @@ import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core/styles'
 import Img from 'gatsby-image'
 import SEO from '../components/seo'
-import Layout from '../components/Layout'
+import Layout from '../components/layout'
 import Chip from '../components/Chip'
 import WorkGrid from '../components/WorkGrid'
 

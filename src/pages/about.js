@@ -2,7 +2,7 @@ import React from 'react'
 import { injectIntl, FormattedMessage } from 'gatsby-plugin-intl'
 import Container from '@material-ui/core/Container'
 import Typography from '@material-ui/core/Typography'
-import Layout from '../components/Layout'
+import Layout from '../components/layout'
 import SEO from '../components/seo'
 
 const AboutPage = ({ intl }) => (

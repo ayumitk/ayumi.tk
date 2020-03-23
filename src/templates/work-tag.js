@@ -9,7 +9,7 @@ import CardContent from '@material-ui/core/CardContent'
 import Typography from '@material-ui/core/Typography'
 import Container from '@material-ui/core/Container'
 import SEO from '../components/seo'
-import Layout from '../components/Layout'
+import Layout from '../components/layout'
 import myTheme from '../styles/theme'
 
 const useStyles = makeStyles(theme => ({

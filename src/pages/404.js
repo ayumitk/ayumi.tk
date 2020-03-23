@@ -3,7 +3,7 @@ import { graphql } from 'gatsby'
 import Img from 'gatsby-image'
 import { injectIntl } from 'gatsby-plugin-intl'
 import Container from '@material-ui/core/Container'
-import Layout from '../components/Layout'
+import Layout from '../components/layout'
 import SEO from '../components/seo'
 import Link from '../components/Link'
 
