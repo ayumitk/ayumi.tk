@@ -1,0 +1,41 @@
+{
+  "title":"UI/UX Designer, Ayumi Takahashi",
+  "blogTitle": "Blog",
+  "workTitle": "Work",
+  "aboutTitle": "About Me",
+  "contactTitle": "Contact",
+  "thanksTitle":"Thank you!",
+  "tableOfContents": "Table of Contents",
+  "seeMore": "See More",
+  "index":{
+    "profile1":"UI/UX Designer",
+    "profile2":"with 10+ years of experience",
+    "profile3":"based in Vancouver, Canada.",
+    "design":{
+      "title":"UI/UX Design",
+      "field":{
+        "dt":"Things I enjoy designing:",
+        "dd":"Web Application, Landing Page, iOS/Android App, Branding, Logo, Wireframe"
+      },
+      "tool":{
+        "dt":"Design Tools:"
+      }
+    },
+    "dev":{
+      "title":"Front-end Dev",
+      "language":{
+        "dt":"Languages I speak:"
+      },
+      "tool":{
+        "dt":"Dev Tools:"
+      }
+    }
+  },
+  "contact": {
+    "name": "Your Name",
+    "email": "Email",
+    "message": "Message",
+    "send": "Send",
+    "thanks": "I'll get back to you shortly. Have a great day!"
+  }
+}

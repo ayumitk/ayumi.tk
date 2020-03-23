@@ -1,0 +1,225 @@
+/* code[class*="language-"], */
+code {
+  display: inline-block;
+  color: rgb(28, 27, 32);
+  padding: 0.15rem 0.35rem;
+  background: rgba(0, 0, 0, 0.075);
+}
+pre code{
+  color: #cbccc6;
+  background: transparent;
+}
+pre{
+  margin:0;
+}
+code[class*="language-"] {
+  font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
+  text-align: left;
+  white-space: pre-wrap;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  font-size: 1rem;
+  line-height: 1.5;
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+pre[class*="language-"] {
+  color: #cbccc6;
+  background: none;
+  text-shadow: 0 1px rgba(0, 0, 0, 0.3);
+  font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
+  text-align: left;
+  white-space: pre-wrap;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.5;
+  font-size: 1rem;
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  overflow: auto;
+}
+
+/* :not(pre) > code[class*="language-"], */
+pre[class*="language-"] {
+  background: #1f2430;
+}
+
+/* Inline code */
+/* :not(pre) > code[class*="language-"] {
+  padding: 0.1em;
+  white-space: normal;
+} */
+
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+  color: #707a8c;
+  font-style: italic;
+}
+
+.token.punctuation {
+  color: #cbccc6;
+}
+
+.namespace {
+  opacity: 0.7;
+}
+
+.token.property,
+.token.tag,
+.token.constant,
+.token.symbol,
+.token.deleted {
+  color: #5ccfe6;
+}
+
+.token.boolean,
+.token.number {
+  color: #ffcc66;
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.inserted {
+  color: #bae67e;
+}
+
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string,
+.token.variable {
+  color: #f28779;
+}
+
+.token.atrule,
+.token.attr-value,
+.token.function,
+.token.class-name {
+  color: #ffcc66;
+}
+
+.token.keyword {
+  color: #ffa759;
+}
+
+.token.regex,
+.token.important {
+  color: #ffb86c;
+}
+
+.token.important,
+.token.bold {
+  font-weight: bold;
+}
+
+.token.italic {
+  font-style: italic;
+}
+
+.token.entity {
+  cursor: help;
+}
+
+/* optional */
+.gatsby-highlight {
+  clear: both;
+}
+.gatsby-highlight-code-line {
+  background-color: #2a3546fd;
+  display: block;
+  margin-right: -1em;
+  margin-left: -1em;
+  padding-right: 1em;
+  padding-left: 0.75em;
+  border-left: 0.25em solid #77a8d999;
+}
+
+/* gatsby-remark-code-titles */
+.gatsby-code-title {
+  background: #4b5461fd;
+  color: #cbccc6;
+  // margin-bottom: -0.65em;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+  line-height: 1;
+  font-family: SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono,
+    Courier New, monospace;
+  font-weight: 600;
+  border-radius: 3px 3px 0 0;
+  display: table;
+}
+
+.gatsby-highlight,
+.gatsby-code-title,
+.gatsby-code-button-container{
+  margin-top: 2rem;
+}
+
+.gatsby-code-title + .gatsby-code-button-container,
+.gatsby-code-button-container + .gatsby-highlight {
+  margin-top: 0;
+}
+
+.gatsby-code-button-container {
+  height: 30px;
+  margin-bottom: -30px;
+  top: 0;
+  display: block;
+  float: right;
+  .gatsby-code-button {
+    line-height: 0;
+    padding: 6px;
+    &::after {
+      font-size: 0.875rem;
+      padding: 0 10px;
+      line-height: 20px;
+      top: -25px;
+      border-radius: 3px;
+      background: #4b5461fd;
+      color: #cbccc6;
+    }
+    svg {
+      fill: #cbccc6;
+      width: 18px;
+      height: 18px;
+    }
+  }
+  &:hover .gatsby-code-button svg {
+    fill: #fff;
+  }
+}
+
+.gatsby-code-button-toaster .gatsby-code-button-toaster-text {
+  background-color: rgba(#ff5851, 0.9);
+  margin: 0;
+  max-width: inherit;
+  padding: 20px;
+  font-size: 2rem;
+  letter-spacing: 0;
+  font-family: inherit;
+  border-radius: 0;
+}
