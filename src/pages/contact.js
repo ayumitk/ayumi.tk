@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { injectIntl, FormattedMessage } from 'gatsby-plugin-intl'
+import { injectIntl, FormattedMessage, navigate } from 'gatsby-plugin-intl'
 import Container from '@material-ui/core/Container'
 import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
@@ -49,7 +49,7 @@ class ContactPage extends Component {
           <form
             name="contact"
             method="post"
-            action="contact-thanks"
+            action="/contact-thanks/"
             data-netlify="true"
             data-netlify-honeypot="bot-field"
             onSubmit={this.handleSubmit}
