@@ -175,7 +175,10 @@ const BlogPost = ({ pageContext, data }) => {
 
   return (
     <Layout>
-      <SEO title={data.contentfulPost.title} />
+      <SEO
+        title={data.contentfulPost.title}
+        description={data.contentfulPost.description && data.contentfulPost.description}
+      />
       <Container maxWidth="md">
         <article className={classes.root}>
           {/* Blog Post Header */}

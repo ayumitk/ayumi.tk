@@ -47,7 +47,10 @@ const WorkPost = ({ pageContext, data }) => {
 
   return (
     <Layout>
-      <SEO title={data.contentfulWork.title} />
+      <SEO
+        title={data.contentfulWork.title}
+        description={data.contentfulWork.description && data.contentfulWork.description}
+      />
       <Container maxWidth="lg">
         <article className={classes.root}>
           {/* Hero Image */}
@@ -75,7 +78,9 @@ const WorkPost = ({ pageContext, data }) => {
                     />
                   ))}
             </div>
-            <p className={classes.workDescription}>{data.contentfulWork.description}</p>
+            <p className={classes.workDescription}>
+              {data.contentfulWork.description && data.contentfulWork.description}
+            </p>
           </header>
 
           {/* Markdown */}
