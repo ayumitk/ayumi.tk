@@ -69,7 +69,7 @@ const useStyles = makeStyles(theme => ({
     },
     '& img': {
       width: `100%`,
-      maxWidth: `500px`,
+      maxWidth: `680px`,
     },
     '& hr': {
       display: `block`,
