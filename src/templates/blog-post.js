@@ -119,6 +119,19 @@ const useStyles = makeStyles(theme => ({
         color: myTheme.palette.secondary.main,
       },
     },
+    '& table': {
+      width: `100%`,
+      margin: `3rem 0`,
+      borderCollapse: `collapse`,
+      borderSpacing: 0,
+    },
+    '& table th, & table td': {
+      border: `solid 1px #CCC`,
+      padding: `0.5rem`,
+    },
+    '& table tbody td': {
+      textAlign: `center`,
+    },
   },
   publishedDate: {
     color: myTheme.palette.primary.main,
@@ -216,7 +229,7 @@ const BlogPost = ({ pageContext, data }) => {
           />
 
           {/* Blog Post Footer */}
-          <footer>
+          <footer style={{ marginTop: '5rem' }}>
             <div className={classes.postTag}>
               {data.contentfulPost.tag &&
                 data.contentfulPost.tag
