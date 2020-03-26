@@ -67,6 +67,9 @@ const useStyles = makeStyles(theme => ({
     '& a': {
       color: myTheme.palette.primary.main,
     },
+    '& .gatsby-resp-image-wrapper': {
+      maxWidth: `680px !important`,
+    },
     '& img': {
       width: `100%`,
     },
