@@ -50,6 +50,7 @@ module.exports = {
               quality: 90,
               withWebp: true,
               linkImagesToOriginal: false,
+              wrapperStyle: 'text-align:center;',
             },
           },
           `gatsby-remark-lazy-load`,
