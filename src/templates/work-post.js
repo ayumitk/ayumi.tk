@@ -10,6 +10,7 @@ import Layout from '../components/layout'
 import '../styles/prism.scss'
 import SEO from '../components/seo'
 import Chip from '../components/Chip'
+import Bio from '../components/Bio'
 
 const useStyles = makeStyles(theme => ({
   root: {},
@@ -114,6 +115,7 @@ const WorkPost = ({ pageContext, data }) => {
                     />
                   ))}
             </div>
+            <Bio />
           </footer>
         </article>
       </Container>
