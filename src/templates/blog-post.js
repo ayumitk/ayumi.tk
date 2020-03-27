@@ -14,6 +14,7 @@ import Layout from '../components/layout'
 import '../styles/prism.scss'
 import SEO from '../components/seo'
 import Chip from '../components/Chip'
+import Bio from '../components/Bio'
 
 const useStyles = makeStyles(theme => ({
   root: {},
@@ -67,9 +68,11 @@ const useStyles = makeStyles(theme => ({
     '& a': {
       color: myTheme.palette.primary.main,
     },
+    '& .gatsby-resp-image-wrapper': {
+      maxWidth: `680px !important`,
+    },
     '& img': {
       width: `100%`,
-      maxWidth: `500px`,
     },
     '& hr': {
       display: `block`,
@@ -175,7 +178,10 @@ const BlogPost = ({ pageContext, data }) => {
 
   return (
     <Layout>
-      <SEO title={data.contentfulPost.title} />
+      <SEO
+        title={data.contentfulPost.title}
+        description={data.contentfulPost.description && data.contentfulPost.description}
+      />
       <Container maxWidth="md">
         <article className={classes.root}>
           {/* Blog Post Header */}
@@ -244,6 +250,7 @@ const BlogPost = ({ pageContext, data }) => {
                     />
                   ))}
             </div>
+            <Bio />
           </footer>
         </article>
       </Container>

@@ -11,6 +11,7 @@ import Container from '@material-ui/core/Container'
 import SEO from '../components/seo'
 import Layout from '../components/layout'
 import myTheme from '../styles/theme'
+import WorkGrid from '../components/WorkGrid'
 
 const useStyles = makeStyles(theme => ({
   root: {},
@@ -48,16 +49,7 @@ const WorkTagRoute = ({ data, intl, pageContext }) => {
         <Typography variant="h2" component="h1" gutterBottom align="center">
           {`#${tag}`} <small>({totalCount})</small>
         </Typography>
-        <div className={classes.workGrid}>
-          {data.allContentfulWork.nodes.map(work => (
-            <div key={work.contentful_id}>
-              <Link to={`/${work.path}`}>
-                <Img fluid={work.hero.fluid} />
-                {work.title}
-              </Link>
-            </div>
-          ))}
-        </div>
+        <WorkGrid works={data.allContentfulWork.nodes} />
       </Container>
     </Layout>
   )
