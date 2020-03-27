@@ -7,6 +7,7 @@ module.exports = {
     title: `Ayumi Takahashi`,
     description: ``,
     author: `@ayumitk__`,
+    siteUrl: `https://ayumi.tk`,
   },
   plugins: [
     {
