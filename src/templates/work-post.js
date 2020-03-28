@@ -5,6 +5,7 @@ import Img from 'gatsby-image'
 import { makeStyles, useTheme } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
 import Typography from '@material-ui/core/Typography'
+import { DiscussionEmbed } from 'disqus-react'
 import myTheme from '../styles/theme'
 import Layout from '../components/layout'
 import '../styles/prism.scss'
@@ -35,6 +36,11 @@ const useStyles = makeStyles(theme => ({
 const WorkPost = ({ pageContext, data }) => {
   const classes = useStyles()
   const theme = useTheme()
+
+  const disqusConfig = {
+    shortname: process.env.GATSBY_DISQUS_NAME,
+    config: { identifier: data.contentfulWork.path, title: data.contentfulWork.title },
+  }
 
   const kebabCase = string =>
     string
@@ -116,6 +122,7 @@ const WorkPost = ({ pageContext, data }) => {
                   ))}
             </div>
             <Bio />
+            <DiscussionEmbed {...disqusConfig} />
           </footer>
         </article>
       </Container>
