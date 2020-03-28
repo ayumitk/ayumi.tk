@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import Avatar from '@material-ui/core/Avatar'
 import { useIntl } from 'gatsby-plugin-intl'
 import Typography from '@material-ui/core/Typography'
-import avatarImg from '../images/avatar.jpg'
+import { useStaticQuery, graphql } from 'gatsby'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -21,9 +21,25 @@ const Bio = () => {
   const classes = useStyles()
   const intl = useIntl()
 
+  const data = useStaticQuery(graphql`
+    query BioQuery {
+      avatar: file(absolutePath: { regex: "/avatar.jpg/" }) {
+        childImageSharp {
+          fixed(width: 100, height: 100) {
+            ...GatsbyImageSharpFixed
+          }
+        }
+      }
+    }
+  `)
+
   return (
     <div className={classes.root}>
-      <Avatar alt={intl.formatMessage({ id: 'name' })} src={avatarImg} className={classes.large} />
+      <Avatar
+        alt={intl.formatMessage({ id: 'name' })}
+        src={data.avatar.childImageSharp.fixed.src}
+        className={classes.large}
+      />
       <Typography variant="body2" component="p" style={{ marginLeft: '1rem' }}>
         {intl.formatMessage({ id: 'name' })}
         <br />
