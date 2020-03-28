@@ -77,6 +77,7 @@ SEO.propTypes = {
   lang: PropTypes.string,
   meta: PropTypes.arrayOf(PropTypes.object),
   title: PropTypes.string.isRequired,
+  intl: PropTypes.object.isRequired,
 }
 
 export default injectIntl(SEO)

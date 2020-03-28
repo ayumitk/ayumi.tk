@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
 import { injectIntl } from 'gatsby-plugin-intl'
 import Container from '@material-ui/core/Container'
@@ -86,5 +87,14 @@ export const query = graphql`
     }
   }
 `
+
+BlogPage.propTypes = {
+  data: PropTypes.shape({
+    allContentfulPost: PropTypes.shape({
+      nodes: PropTypes.array,
+    }),
+  }).isRequired,
+  intl: PropTypes.object.isRequired,
+}
 
 export default injectIntl(BlogPage)

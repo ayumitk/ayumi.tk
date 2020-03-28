@@ -1,9 +1,9 @@
 import React from 'react'
-import { injectIntl, Link } from 'gatsby-plugin-intl'
+import PropTypes from 'prop-types'
+import { injectIntl } from 'gatsby-plugin-intl'
 import Container from '@material-ui/core/Container'
 import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core/styles'
-import Img from 'gatsby-image'
 import { graphql } from 'gatsby'
 import SEO from '../components/seo'
 import Layout from '../components/layout'
@@ -86,5 +86,14 @@ export const query = graphql`
     }
   }
 `
+
+WorkPage.propTypes = {
+  data: PropTypes.shape({
+    allContentfulWork: PropTypes.shape({
+      nodes: PropTypes.array,
+    }),
+  }).isRequired,
+  intl: PropTypes.object.isRequired,
+}
 
 export default injectIntl(WorkPage)

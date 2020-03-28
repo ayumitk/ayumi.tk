@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { injectIntl, FormattedMessage, navigate } from 'gatsby-plugin-intl'
 import Container from '@material-ui/core/Container'
 import Button from '@material-ui/core/Button'
@@ -113,6 +114,10 @@ class ContactPage extends Component {
       </Layout>
     )
   }
+}
+
+ContactPage.propTypes = {
+  intl: PropTypes.object.isRequired,
 }
 
 export default injectIntl(ContactPage)

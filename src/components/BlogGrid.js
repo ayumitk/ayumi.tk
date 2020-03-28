@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { Link } from 'gatsby-plugin-intl'
 import { makeStyles } from '@material-ui/core/styles'
 import Card from '@material-ui/core/Card'
@@ -58,6 +59,10 @@ const BlogGrid = ({ posts }) => {
       })}
     </div>
   )
+}
+
+BlogGrid.propTypes = {
+  posts: PropTypes.array.isRequired,
 }
 
 export default BlogGrid

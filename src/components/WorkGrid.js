@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { Link } from 'gatsby-plugin-intl'
 import { makeStyles } from '@material-ui/core/styles'
 import Img from 'gatsby-image'
@@ -61,6 +62,10 @@ const WorkGrid = ({ works }) => {
       ))}
     </div>
   )
+}
+
+WorkGrid.propTypes = {
+  works: PropTypes.array.isRequired,
 }
 
 export default WorkGrid

@@ -1,5 +1,6 @@
 import React from 'react'
 import { graphql } from 'gatsby'
+import PropTypes from 'prop-types'
 import Img from 'gatsby-image'
 import { injectIntl } from 'gatsby-plugin-intl'
 import Container from '@material-ui/core/Container'
@@ -19,13 +20,10 @@ const NotFoundPage = ({ data }) => (
     </Container>
   </Layout>
 )
-
 export const query = graphql`
   query {
     file(relativePath: { eq: "404.png" }) {
       childImageSharp {
-        # Specify the image processing specifications right in the query.
-        # Makes it trivial to update as your page's design changes.
         fixed(width: 150, height: 150) {
           ...GatsbyImageSharpFixed
         }
@@ -33,5 +31,15 @@ export const query = graphql`
     }
   }
 `
+
+NotFoundPage.propTypes = {
+  data: PropTypes.shape({
+    file: PropTypes.shape({
+      childImageSharp: PropTypes.shape({
+        fixed: PropTypes.object,
+      }),
+    }),
+  }).isRequired,
+}
 
 export default injectIntl(NotFoundPage)

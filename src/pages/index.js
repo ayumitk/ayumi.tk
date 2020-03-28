@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
 import { injectIntl, Link, FormattedMessage } from 'gatsby-plugin-intl'
 import { makeStyles } from '@material-ui/core/styles'
@@ -72,7 +73,7 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-const IndexPage = ({ data, intl }) => {
+const IndexPage = ({ data }) => {
   const classes = useStyles()
   return (
     <Layout>
@@ -202,5 +203,16 @@ export const query = graphql`
     }
   }
 `
+
+IndexPage.propTypes = {
+  data: PropTypes.shape({
+    allContentfulPost: PropTypes.shape({
+      nodes: PropTypes.array,
+    }),
+    allContentfulWork: PropTypes.shape({
+      nodes: PropTypes.array,
+    }),
+  }).isRequired,
+}
 
 export default injectIntl(IndexPage)

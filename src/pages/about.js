@@ -1,5 +1,6 @@
 import React from 'react'
-import { injectIntl, FormattedMessage } from 'gatsby-plugin-intl'
+import PropTypes from 'prop-types'
+import { injectIntl } from 'gatsby-plugin-intl'
 import Container from '@material-ui/core/Container'
 import Typography from '@material-ui/core/Typography'
 import Layout from '../components/layout'
@@ -16,5 +17,9 @@ const AboutPage = ({ intl }) => (
     </Container>
   </Layout>
 )
+
+AboutPage.propTypes = {
+  intl: PropTypes.object.isRequired,
+}
 
 export default injectIntl(AboutPage)
