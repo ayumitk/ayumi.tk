@@ -9,6 +9,7 @@ import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails'
 import Typography from '@material-ui/core/Typography'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import Container from '@material-ui/core/Container'
+import { DiscussionEmbed } from 'disqus-react'
 import myTheme from '../styles/theme'
 import Layout from '../components/layout'
 import '../styles/prism.scss'
@@ -162,9 +163,14 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-const BlogPost = ({ pageContext, data }) => {
+const BlogPost = ({ data }) => {
   const classes = useStyles()
   const theme = useTheme()
+
+  const disqusConfig = {
+    shortname: process.env.GATSBY_DISQUS_NAME,
+    config: { identifier: data.contentfulPost.path, title: data.contentfulPost.title },
+  }
 
   const kebabCase = string =>
     string
@@ -251,6 +257,7 @@ const BlogPost = ({ pageContext, data }) => {
                   ))}
             </div>
             <Bio />
+            <DiscussionEmbed {...disqusConfig} />
           </footer>
         </article>
       </Container>

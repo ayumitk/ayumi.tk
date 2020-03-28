@@ -9,6 +9,7 @@
     "@material-ui/icons": "^4.9.1",
     "@material-ui/styles": "^4.9.6",
     "clsx": "^1.1.0",
+    "disqus-react": "^1.0.8",
     "dotenv": "^8.2.0",
     "gatsby": "^2.19.45",
     "gatsby-image": "^2.2.44",
