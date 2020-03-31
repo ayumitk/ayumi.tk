@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React from 'react'
+import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
 import { Link } from 'gatsby-plugin-intl'
 import Img from 'gatsby-image'
@@ -28,7 +29,7 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-const WorkTagRoute = ({ data, intl, pageContext }) => {
+const BlogTagRoute = ({ data, pageContext }) => {
   const classes = useStyles()
   const { tag } = pageContext
 
@@ -101,4 +102,13 @@ export const query = graphql`
   }
 `
 
-export default WorkTagRoute
+BlogTagRoute.propTypes = {
+  data: PropTypes.shape({
+    allContentfulPost: PropTypes.shape({
+      nodes: PropTypes.array,
+    }),
+  }).isRequired,
+  pageContext: PropTypes.object.isRequired,
+}
+
+export default BlogTagRoute

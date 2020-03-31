@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
 import { injectIntl } from 'gatsby-plugin-intl'
 import { Container, Typography, makeStyles } from '@material-ui/core'
-import { Chip, Layout, SEO, BlogGrid } from '../components'
+import { Chip, Layout, SEO, BlogGrid, Tag } from '../components'
 import myTheme from '../styles/theme'
 
 const useStyles = makeStyles(theme => ({
@@ -46,13 +46,7 @@ const BlogPage = ({ data, intl }) => {
 
         <div>
           {uniqTags.map(tag => (
-            <Chip
-              label={`#${tag}`}
-              to={`/blog/tag/${kebabCase(tag)}`}
-              clickable
-              style={{ margin: '0 0.25rem 0.25rem 0' }}
-              key={kebabCase(tag)}
-            />
+            <Tag label={`#${tag}`} to={`/blog/tag/${kebabCase(tag)}`} key={kebabCase(tag)} />
           ))}
         </div>
 

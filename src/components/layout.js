@@ -2,21 +2,21 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { useStaticQuery, graphql } from 'gatsby'
 import { Link } from 'gatsby-plugin-intl'
+import MenuIcon from '@material-ui/icons/Menu'
 import {
-  AppBar,
   CssBaseline,
   Divider,
   Drawer,
   Hidden,
   IconButton,
   List,
-  Menu,
-  Toolbar,
   Typography,
   makeStyles,
   useTheme,
   ThemeProvider,
   Container,
+  AppBar,
+  Toolbar,
 } from '@material-ui/core'
 import myTheme from '../styles/theme'
 import Nav from './Nav'
@@ -170,7 +170,7 @@ const Layout = ({ children }) => {
                 onClick={handleDrawerToggle}
                 className={classes.menuButton}
               >
-                <Menu />
+                <MenuIcon />
               </IconButton>
             </Toolbar>
           </Container>

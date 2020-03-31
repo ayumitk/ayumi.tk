@@ -1,6 +1,7 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
-import { Link, FormattedMessage } from 'gatsby-plugin-intl'
+import { FormattedMessage } from 'gatsby-plugin-intl'
 import Img from 'gatsby-image'
 import {
   makeStyles,
@@ -14,7 +15,7 @@ import {
 import { ExpandMore } from '@material-ui/icons'
 import { DiscussionEmbed } from 'disqus-react'
 import myTheme from '../styles/theme'
-import { Layout, SEO, Chip, Bio } from '../components'
+import { Layout, SEO, Bio, Tag } from '../components'
 import '../styles/prism.scss'
 
 const useStyles = makeStyles(theme => ({
@@ -155,11 +156,6 @@ const useStyles = makeStyles(theme => ({
   postTag: {
     display: `flex`,
     marginBottom: `1rem`,
-    '& a': {
-      background: `#EEE`,
-      color: myTheme.palette.secondary.main,
-      textDecoration: `none`,
-    },
   },
 }))
 
@@ -202,15 +198,7 @@ const BlogPost = ({ data }) => {
               {data.contentfulPost.tag &&
                 data.contentfulPost.tag
                   .sort()
-                  .map(tag => (
-                    <Chip
-                      label={`#${tag}`}
-                      to={`/blog/tag/${kebabCase(tag)}`}
-                      clickable
-                      style={{ margin: '0 0.25rem 0.25rem 0' }}
-                      key={kebabCase(tag)}
-                    />
-                  ))}
+                  .map(tag => <Tag label={`#${tag}`} to={`/blog/tag/${kebabCase(tag)}`} key={kebabCase(tag)} />)}
             </div>
           </header>
 
@@ -247,15 +235,7 @@ const BlogPost = ({ data }) => {
               {data.contentfulPost.tag &&
                 data.contentfulPost.tag
                   .sort()
-                  .map(tag => (
-                    <Chip
-                      label={`#${tag}`}
-                      to={`/blog/tag/${kebabCase(tag)}`}
-                      clickable
-                      style={{ margin: '0 0.25rem 0.25rem 0' }}
-                      key={kebabCase(tag)}
-                    />
-                  ))}
+                  .map(tag => <Tag label={`#${tag}`} to={`/blog/tag/${kebabCase(tag)}`} key={kebabCase(tag)} />)}
             </div>
             <Bio />
             <DiscussionEmbed {...disqusConfig} />
@@ -295,5 +275,11 @@ export const query = graphql`
     }
   }
 `
+
+BlogPost.propTypes = {
+  data: PropTypes.shape({
+    contentfulPost: PropTypes.object,
+  }).isRequired,
+}
 
 export default BlogPost

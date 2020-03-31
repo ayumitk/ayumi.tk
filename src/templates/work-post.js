@@ -1,11 +1,11 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
-import { Link } from 'gatsby-plugin-intl'
 import Img from 'gatsby-image'
 import { makeStyles, useTheme, Container, Typography } from '@material-ui/core'
 import { DiscussionEmbed } from 'disqus-react'
 import myTheme from '../styles/theme'
-import { Layout, SEO, Chip, Bio } from '../components'
+import { Layout, SEO, Tag, Bio } from '../components'
 import '../styles/prism.scss'
 
 const useStyles = makeStyles(theme => ({
@@ -28,7 +28,7 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-const WorkPost = ({ pageContext, data }) => {
+const WorkPost = ({ data }) => {
   const classes = useStyles()
   const theme = useTheme()
 
@@ -71,15 +71,7 @@ const WorkPost = ({ pageContext, data }) => {
               {data.contentfulWork.tag &&
                 data.contentfulWork.tag
                   .sort()
-                  .map(tag => (
-                    <Chip
-                      label={`#${tag}`}
-                      to={`/work/tag/${kebabCase(tag)}`}
-                      clickable
-                      style={{ margin: '0.25rem' }}
-                      key={kebabCase(tag)}
-                    />
-                  ))}
+                  .map(tag => <Tag label={`#${tag}`} to={`/work/tag/${kebabCase(tag)}`} key={kebabCase(tag)} />)}
             </div>
             <p className={classes.workDescription}>
               {data.contentfulWork.description && data.contentfulWork.description}
@@ -107,15 +99,7 @@ const WorkPost = ({ pageContext, data }) => {
               {data.contentfulWork.tag &&
                 data.contentfulWork.tag
                   .sort()
-                  .map(tag => (
-                    <Chip
-                      label={`#${tag}`}
-                      to={`/work/tag/${kebabCase(tag)}`}
-                      clickable
-                      style={{ margin: '0.25rem' }}
-                      key={kebabCase(tag)}
-                    />
-                  ))}
+                  .map(tag => <Tag label={`#${tag}`} to={`/work/tag/${kebabCase(tag)}`} key={kebabCase(tag)} />)}
             </div>
             <Bio />
             <DiscussionEmbed {...disqusConfig} />
@@ -148,5 +132,11 @@ export const query = graphql`
     }
   }
 `
+
+WorkPost.propTypes = {
+  data: PropTypes.shape({
+    contentfulWork: PropTypes.object,
+  }).isRequired,
+}
 
 export default WorkPost

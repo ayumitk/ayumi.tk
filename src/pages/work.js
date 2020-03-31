@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { injectIntl } from 'gatsby-plugin-intl'
 import { Container, Typography, makeStyles } from '@material-ui/core'
 import { graphql } from 'gatsby'
-import { Layout, SEO, Chip, WorkGrid } from '../components'
+import { Layout, SEO, WorkGrid, Tag } from '../components'
 
 const useStyles = makeStyles(theme => ({
   root: {},
@@ -47,13 +47,7 @@ const WorkPage = ({ data, intl }) => {
 
         <div>
           {uniqTags.map(tag => (
-            <Chip
-              label={`#${tag}`}
-              to={`/work/tag/${kebabCase(tag)}`}
-              clickable
-              style={{ margin: '0 0.25rem 0.25rem 0' }}
-              key={kebabCase(tag)}
-            />
+            <Tag label={`#${tag}`} to={`/work/tag/${kebabCase(tag)}`} key={kebabCase(tag)} />
           ))}
         </div>
 

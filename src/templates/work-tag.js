@@ -1,17 +1,9 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
-import { Link } from 'gatsby-plugin-intl'
-import Img from 'gatsby-image'
-import { makeStyles } from '@material-ui/core/styles'
-import Card from '@material-ui/core/Card'
-import CardActionArea from '@material-ui/core/CardActionArea'
-import CardContent from '@material-ui/core/CardContent'
-import Typography from '@material-ui/core/Typography'
-import Container from '@material-ui/core/Container'
-import SEO from '../components/seo'
-import Layout from '../components/layout'
+import { makeStyles, Typography, Container } from '@material-ui/core'
+import { SEO, Layout, WorkGrid } from '../components'
 import myTheme from '../styles/theme'
-import WorkGrid from '../components/WorkGrid'
 
 const useStyles = makeStyles(theme => ({
   root: {},
@@ -31,7 +23,7 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-const WorkTagRoute = ({ data, intl, pageContext }) => {
+const WorkTagRoute = ({ data, pageContext }) => {
   const classes = useStyles()
   const { tag } = pageContext
 
@@ -78,5 +70,14 @@ export const query = graphql`
     }
   }
 `
+
+WorkTagRoute.propTypes = {
+  data: PropTypes.shape({
+    allContentfulWork: PropTypes.shape({
+      nodes: PropTypes.array,
+    }),
+  }).isRequired,
+  pageContext: PropTypes.object.isRequired,
+}
 
 export default WorkTagRoute
