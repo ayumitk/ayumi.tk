@@ -1,19 +1,23 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import AppBar from '@material-ui/core/AppBar'
-import CssBaseline from '@material-ui/core/CssBaseline'
-import Divider from '@material-ui/core/Divider'
-import Drawer from '@material-ui/core/Drawer'
-import Hidden from '@material-ui/core/Hidden'
-import IconButton from '@material-ui/core/IconButton'
-import List from '@material-ui/core/List'
-import MenuIcon from '@material-ui/icons/Menu'
-import Toolbar from '@material-ui/core/Toolbar'
-import Typography from '@material-ui/core/Typography'
-import { makeStyles, useTheme, ThemeProvider } from '@material-ui/core/styles'
-import { Link } from 'gatsby-plugin-intl'
 import { useStaticQuery, graphql } from 'gatsby'
-import Container from '@material-ui/core/Container'
+import { Link } from 'gatsby-plugin-intl'
+import {
+  AppBar,
+  CssBaseline,
+  Divider,
+  Drawer,
+  Hidden,
+  IconButton,
+  List,
+  Menu,
+  Toolbar,
+  Typography,
+  makeStyles,
+  useTheme,
+  ThemeProvider,
+  Container,
+} from '@material-ui/core'
 import myTheme from '../styles/theme'
 import Nav from './Nav'
 import Language from './Language'
@@ -166,7 +170,7 @@ const Layout = ({ children }) => {
                 onClick={handleDrawerToggle}
                 className={classes.menuButton}
               >
-                <MenuIcon />
+                <Menu />
               </IconButton>
             </Toolbar>
           </Container>

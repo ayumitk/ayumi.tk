@@ -1,9 +1,7 @@
 import React from 'react'
-import { makeStyles } from '@material-ui/core/styles'
-import Avatar from '@material-ui/core/Avatar'
-import { useIntl } from 'gatsby-plugin-intl'
-import Typography from '@material-ui/core/Typography'
 import { useStaticQuery, graphql } from 'gatsby'
+import { makeStyles, Avatar, Typography } from '@material-ui/core'
+import { useIntl } from 'gatsby-plugin-intl'
 
 const useStyles = makeStyles(theme => ({
   root: {

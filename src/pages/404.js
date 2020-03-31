@@ -3,10 +3,8 @@ import { graphql } from 'gatsby'
 import PropTypes from 'prop-types'
 import Img from 'gatsby-image'
 import { injectIntl } from 'gatsby-plugin-intl'
-import Container from '@material-ui/core/Container'
-import Layout from '../components/layout'
-import SEO from '../components/seo'
-import Link from '../components/Link'
+import { Container } from '@material-ui/core'
+import { Layout, SEO, Link } from '../components'
 
 const NotFoundPage = ({ data }) => (
   <Layout>

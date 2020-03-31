@@ -1,12 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { injectIntl, FormattedMessage, navigate } from 'gatsby-plugin-intl'
-import Container from '@material-ui/core/Container'
-import Button from '@material-ui/core/Button'
-import Typography from '@material-ui/core/Typography'
-import TextField from '@material-ui/core/TextField'
-import Layout from '../components/layout'
-import SEO from '../components/seo'
+import { Container, Button, Typography, TextField } from '@material-ui/core'
+import { Layout, SEO } from '../components'
 
 function encode(data) {
   return Object.keys(data)

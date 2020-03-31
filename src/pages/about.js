@@ -1,10 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { injectIntl } from 'gatsby-plugin-intl'
-import Container from '@material-ui/core/Container'
-import Typography from '@material-ui/core/Typography'
-import Layout from '../components/layout'
-import SEO from '../components/seo'
+import { Container, Typography } from '@material-ui/core'
+import { Layout, SEO } from '../components'
 
 const AboutPage = ({ intl }) => (
   <Layout>

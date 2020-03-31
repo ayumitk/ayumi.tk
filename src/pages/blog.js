@@ -2,14 +2,9 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
 import { injectIntl } from 'gatsby-plugin-intl'
-import Container from '@material-ui/core/Container'
-import Typography from '@material-ui/core/Typography'
-import { makeStyles } from '@material-ui/core/styles'
-import Chip from '../components/Chip'
-import Layout from '../components/layout'
-import SEO from '../components/seo'
+import { Container, Typography, makeStyles } from '@material-ui/core'
+import { Chip, Layout, SEO, BlogGrid } from '../components'
 import myTheme from '../styles/theme'
-import BlogGrid from '../components/BlogGrid'
 
 const useStyles = makeStyles(theme => ({
   root: {},

@@ -1,12 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'gatsby-plugin-intl'
-import { makeStyles } from '@material-ui/core/styles'
-import Card from '@material-ui/core/Card'
-import CardActionArea from '@material-ui/core/CardActionArea'
-import CardContent from '@material-ui/core/CardContent'
+import { makeStyles, Card, CardActionArea, CardContent, Typography } from '@material-ui/core'
 import Img from 'gatsby-image'
-import Typography from '@material-ui/core/Typography'
 import myTheme from '../styles/theme'
 
 const useStyles = makeStyles(theme => ({

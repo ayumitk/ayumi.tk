@@ -1,9 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'gatsby-plugin-intl'
-import { makeStyles } from '@material-ui/core/styles'
+import { makeStyles, Typography } from '@material-ui/core'
 import Img from 'gatsby-image'
-import Typography from '@material-ui/core/Typography'
 import myTheme from '../styles/theme'
 
 const useStyles = makeStyles(theme => ({

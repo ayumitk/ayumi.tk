@@ -2,16 +2,10 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
 import { injectIntl, Link, FormattedMessage } from 'gatsby-plugin-intl'
-import { makeStyles } from '@material-ui/core/styles'
-import Button from '@material-ui/core/Button'
-import Typography from '@material-ui/core/Typography'
-import Container from '@material-ui/core/Container'
-import ChevronRightIcon from '@material-ui/icons/ChevronRight'
-import Layout from '../components/layout'
-import SEO from '../components/seo'
+import { makeStyles, Button, Typography, Container } from '@material-ui/core'
+import { ChevronRight } from '@material-ui/icons'
+import { Layout, SEO, WorkGrid, BlogGrid } from '../components'
 import myTheme from '../styles/theme'
-import WorkGrid from '../components/WorkGrid'
-import BlogGrid from '../components/BlogGrid'
 
 const useStyles = makeStyles(theme => ({
   root: {},
@@ -145,7 +139,7 @@ const IndexPage = ({ data }) => {
           <Link to="/blog">
             <Button variant="contained" color="primary" size="large" className={classes.seeMore}>
               <FormattedMessage id="seeMore" />
-              <ChevronRightIcon />
+              <ChevronRight />
             </Button>
           </Link>
         </div>
@@ -160,7 +154,7 @@ const IndexPage = ({ data }) => {
           <Link to="/work">
             <Button variant="contained" color="primary" size="large" className={classes.seeMore}>
               <FormattedMessage id="seeMore" />
-              <ChevronRightIcon />
+              <ChevronRight />
             </Button>
           </Link>
         </div>
