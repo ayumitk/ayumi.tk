@@ -130,6 +130,9 @@ module.exports = {
       resolve: 'gatsby-plugin-google-analytics',
       options: {
         trackingId: 'UA-121956784-1',
+        head: false,
+        respectDNT: true,
+        pageTransitionDelay: 250,
       },
     },
     `gatsby-plugin-sitemap`,
