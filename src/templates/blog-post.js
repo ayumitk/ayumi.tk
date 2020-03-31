@@ -2,20 +2,20 @@ import React from 'react'
 import { graphql } from 'gatsby'
 import { Link, FormattedMessage } from 'gatsby-plugin-intl'
 import Img from 'gatsby-image'
-import { makeStyles, useTheme } from '@material-ui/core/styles'
-import ExpansionPanel from '@material-ui/core/ExpansionPanel'
-import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary'
-import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails'
-import Typography from '@material-ui/core/Typography'
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
-import Container from '@material-ui/core/Container'
+import {
+  makeStyles,
+  useTheme,
+  ExpansionPanel,
+  ExpansionPanelSummary,
+  ExpansionPanelDetails,
+  Typography,
+  Container,
+} from '@material-ui/core'
+import { ExpandMore } from '@material-ui/icons'
 import { DiscussionEmbed } from 'disqus-react'
 import myTheme from '../styles/theme'
-import Layout from '../components/layout'
+import { Layout, SEO, Chip, Bio } from '../components'
 import '../styles/prism.scss'
-import SEO from '../components/seo'
-import Chip from '../components/Chip'
-import Bio from '../components/Bio'
 
 const useStyles = makeStyles(theme => ({
   root: {},
@@ -221,7 +221,7 @@ const BlogPost = ({ data }) => {
 
           {/* Table of Contents */}
           <ExpansionPanel className={classes.tableOfContents}>
-            <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
+            <ExpansionPanelSummary expandIcon={<ExpandMore />} aria-controls="panel1a-content" id="panel1a-header">
               <Typography className={classes.tableOfContentsHeading}>
                 <FormattedMessage id="tableOfContents" />
               </Typography>
