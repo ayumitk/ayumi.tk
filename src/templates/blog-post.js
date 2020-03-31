@@ -174,9 +174,10 @@ const BlogPost = ({ data }) => {
 
   const kebabCase = string =>
     string
-      .replace(/([a-z])([A-Z])/g, '$1-$2')
-      .replace(/\s+/g, '-')
-      .toLowerCase()
+      .match(/[A-Z]{2,}(?=[A-Z][a-z0-9]*|\b)|[A-Z]?[a-z0-9]*|[A-Z]|[0-9]+/g)
+      .filter(Boolean)
+      .map(x => x.toLowerCase())
+      .join('-')
 
   if (!data.contentfulPost.title) {
     return <Layout>Sorry, no English version of this post available. Please check related posts.</Layout>
