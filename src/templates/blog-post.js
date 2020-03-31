@@ -176,7 +176,15 @@ const BlogPost = ({ data }) => {
       .join('-')
 
   if (!data.contentfulPost.title) {
-    return <Layout>Sorry, no English version of this post available. Please check related posts.</Layout>
+    return (
+      <Layout>
+        <Container maxWidth="md" style={{ paddingTop: `5rem` }}>
+          <Typography variant="body1" align="center">
+            Sorry, no English version of this post available.
+          </Typography>
+        </Container>
+      </Layout>
+    )
   }
 
   return (
