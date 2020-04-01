@@ -57,7 +57,7 @@ exports.createPages = ({ graphql, actions }) => {
 
       createPage({
         // Path for this page — required
-        path,
+        path: `/blog/${path}`,
         component: blogPostTemplate,
         context: {
           slug: path,
@@ -95,7 +95,7 @@ exports.createPages = ({ graphql, actions }) => {
 
       createPage({
         // Path for this page — required
-        path,
+        path: `/work/${path}`,
         component: workDetailTemplate,
         context: {
           slug: path,

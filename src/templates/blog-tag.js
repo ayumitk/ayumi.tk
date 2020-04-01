@@ -4,7 +4,7 @@ import { graphql } from 'gatsby'
 import { Link } from 'gatsby-plugin-intl'
 import Img from 'gatsby-image'
 import { makeStyles, Card, CardActionArea, CardContent, Typography, Container } from '@material-ui/core'
-import { SEO, Layout } from '../components'
+import { SEO, Layout, BlogGrid } from '../components'
 import myTheme from '../styles/theme'
 
 const useStyles = makeStyles(theme => ({
@@ -48,31 +48,7 @@ const BlogTagRoute = ({ data, pageContext }) => {
           {`#${tag}`} <small>({totalCount})</small>
         </Typography>
 
-        <div className={classes.blogGrid}>
-          {data.allContentfulPost.nodes.map(post => {
-            if (!post.title) {
-              return null
-            }
-
-            return (
-              <Link to={`/${post.path}`} key={post.contentful_id}>
-                <Card className={classes.root}>
-                  <CardActionArea>
-                    <Img fluid={post.hero.fluid} />
-                    <CardContent className={classes.blogCardContent}>
-                      <Typography gutterBottom component="h2" style={{ fontWeight: '400' }}>
-                        {post.title}
-                      </Typography>
-                      <Typography variant="body2" color="textSecondary" component="p">
-                        {post.publishedAt}
-                      </Typography>
-                    </CardContent>
-                  </CardActionArea>
-                </Card>
-              </Link>
-            )
-          })}
-        </div>
+        <BlogGrid posts={data.allContentfulPost.nodes} />
       </Container>
     </Layout>
   )

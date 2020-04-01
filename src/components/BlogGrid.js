@@ -36,7 +36,7 @@ const BlogGrid = ({ posts }) => {
         }
 
         return (
-          <Link to={`/${post.path}`} key={post.contentful_id}>
+          <Link to={`/blog/${post.path}`} key={post.contentful_id}>
             <Card>
               <CardActionArea>
                 <Img fluid={post.hero.fluid} />

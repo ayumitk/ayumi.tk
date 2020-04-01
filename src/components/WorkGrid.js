@@ -50,7 +50,7 @@ const WorkGrid = ({ works }) => {
   return (
     <div className={classes.root}>
       {works.map(work => (
-        <Link to={`/${work.path}`} key={work.contentful_id} className={classes.workItem}>
+        <Link to={`/work/${work.path}`} key={work.contentful_id} className={classes.workItem}>
           <Img fluid={work.hero.fluid} />
           <div className={classes.workItemTitle}>
             <Typography variant="h4" component="h3" align="center">
