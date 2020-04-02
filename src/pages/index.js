@@ -67,11 +67,11 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-const IndexPage = ({ data }) => {
+const IndexPage = ({ intl, data }) => {
   const classes = useStyles()
   return (
     <Layout>
-      <SEO title="Home" />
+      <SEO title={intl.formatMessage({ id: 'homeTitle' })} />
 
       <h1 className={classes.hero}>
         <strong>
@@ -199,6 +199,7 @@ export const query = graphql`
 `
 
 IndexPage.propTypes = {
+  intl: PropTypes.object.isRequired,
   data: PropTypes.shape({
     allContentfulPost: PropTypes.shape({
       nodes: PropTypes.array,
