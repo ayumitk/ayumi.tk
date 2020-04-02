@@ -110,7 +110,7 @@ const AboutPage = ({ data, intl }) => {
           現在はカナダのバンクーバーに住んでいますが、もともとは長崎の小さな町の出身です。
         </Typography>
         <Typography variant="body1" component="p">
-          お問い合わせ頂けましたら、履歴書及び職務経歴書の送付も可能です。
+          お問い合わせ頂けましたら、履歴書及び職務経歴書の送付も可能ですので、お気軽にお問い合わせください。
         </Typography>
       </>
     )
