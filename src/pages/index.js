@@ -10,7 +10,7 @@ import myTheme from '../styles/theme'
 const useStyles = makeStyles(theme => ({
   root: {},
   hero: {
-    padding: theme.spacing(8),
+    padding: theme.spacing(8, 0),
     textAlign: `center`,
     '& strong': {
       letterSpacing: `-0.2rem`,

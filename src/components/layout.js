@@ -31,6 +31,13 @@ const useStyles = makeStyles(theme => ({
     '& h1': {
       fontFamily: `Gilroy, NotoSansJP, sans-serif`,
       fontWeight: 700,
+      fontSize: `3.75rem`,
+      [theme.breakpoints.down('xs')]: {
+        fontSize: `3rem`,
+      },
+      '& small': {
+        fontSize: `1.75rem`,
+      },
     },
     '& h2': {
       fontWeight: 700,

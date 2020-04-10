@@ -4,6 +4,7 @@ code {
   color: rgb(28, 27, 32);
   padding: 0.15rem 0.35rem;
   background: rgba(0, 0, 0, 0.075);
+  word-break: break-all;
 }
 pre code{
   color: #cbccc6;
@@ -11,8 +12,10 @@ pre code{
 }
 pre{
   margin:0;
+  word-break: break-all;
 }
 code[class*="language-"] {
+  display:none;
   font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
   text-align: left;
   white-space: pre-wrap;

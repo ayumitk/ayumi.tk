@@ -7,6 +7,7 @@ const useStyles = makeStyles(theme => ({
   root: {
     margin: `0px 0.25rem 0.25rem 0px`,
     textDecoration: `none`,
+    display: `inline-block`,
     '& .MuiChip-root': {
       cursor: `pointer`,
     },

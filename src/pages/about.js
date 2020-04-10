@@ -52,6 +52,11 @@ const useStyles = makeStyles(theme => ({
       display: `inline-block`,
     },
   },
+  nameAndTitle: {
+    [theme.breakpoints.down('xs')]: {
+      textAlign: `center`,
+    },
+  },
 }))
 
 const AboutPage = ({ data, intl }) => {
@@ -60,12 +65,14 @@ const AboutPage = ({ data, intl }) => {
   const bio =
     intl.locale === 'en' ? (
       <>
-        <Typography variant="h5" component="h2" gutterBottom>
-          Ayumi Takahashi
-        </Typography>
-        <Typography variant="body1" component="p">
-          Freelance UI/UX Designer
-        </Typography>
+        <div className={classes.nameAndTitle}>
+          <Typography variant="h5" component="h2" gutterBottom>
+            Ayumi Takahashi
+          </Typography>
+          <Typography variant="body1" component="p">
+            Freelance UI/UX Designer
+          </Typography>
+        </div>
         <Typography variant="body1" component="p">
           I've worked as a web designer for over 10 years in the Tech industry in Japan and Canada, responsible for
           branding, art direction, UI/UX design, and front-end development for websites and mobile apps. My extensive
@@ -89,12 +96,14 @@ const AboutPage = ({ data, intl }) => {
       </>
     ) : (
       <>
-        <Typography variant="h5" component="h2" gutterBottom>
-          高橋あゆみ
-        </Typography>
-        <Typography variant="body1" component="p">
-          フリーランスUI/UXデザイナー
-        </Typography>
+        <div className={classes.nameAndTitle}>
+          <Typography variant="h5" component="h2" gutterBottom>
+            高橋あゆみ
+          </Typography>
+          <Typography variant="body1" component="p">
+            フリーランスUI/UXデザイナー
+          </Typography>
+        </div>
         <Typography variant="body1" component="p">
           日本とカナダのIT企業にて10年以上、Webデザイナーとして勤務。
           <br />

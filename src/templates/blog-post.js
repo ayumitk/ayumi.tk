@@ -19,7 +19,14 @@ import { Layout, SEO, Bio, Tag } from '../components'
 import '../styles/prism.scss'
 
 const useStyles = makeStyles(theme => ({
-  root: {},
+  root: {
+    '& h1': {
+      fontSize: `2.5rem`,
+      [theme.breakpoints.down('xs')]: {
+        fontSize: `1.75rem`,
+      },
+    },
+  },
   hero: {
     lineHeight: 0,
     '& img': {
