@@ -25,6 +25,9 @@ const useStyles = makeStyles(theme => ({
       width: `100%`,
     },
   },
+  postContainer: {
+    maxWidth: `748px`,
+  },
   tableOfContents: {
     background: `#ececec`,
     maxWidth: `500px`,
@@ -188,7 +191,7 @@ const BlogPost = ({ data }) => {
         title={data.contentfulPost.title}
         description={data.contentfulPost.description && data.contentfulPost.description}
       />
-      <Container maxWidth="md">
+      <Container maxWidth="false" className={classes.postContainer}>
         <article className={classes.root}>
           {/* Blog Post Header */}
           <header>
