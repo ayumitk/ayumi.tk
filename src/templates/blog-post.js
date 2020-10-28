@@ -222,7 +222,7 @@ const BlogPost = ({ data }) => {
           </div>
 
           {/* Table of Contents */}
-          <ExpansionPanel className={classes.tableOfContents}>
+          <ExpansionPanel className={classes.tableOfContents} defaultExpanded="true">
             <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
               <Typography className={classes.tableOfContentsHeading}>
                 <FormattedMessage id="tableOfContents" />
