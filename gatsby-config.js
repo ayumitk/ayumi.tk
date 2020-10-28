@@ -1,6 +1,21 @@
 require('dotenv').config({
-  path: `.env`,
+  path: `.env`
 })
+
+let contentfulConfig = {}
+if(process.env.NODE_ENV === 'production'){
+  contentfulConfig = {
+    spaceId: process.env.CONTENTFUL_SPACE_ID,
+    accessToken: process.env.CONTENTFUL_DELIVERY_TOKEN,
+    host: process.env.CONTENTFUL_HOST
+  }
+} else {
+  contentfulConfig = {
+    spaceId: process.env.CONTENTFUL_SPACE_ID,
+    accessToken: process.env.CONTENTFUL_PREVIEW_TOKEN,
+    host: process.env.CONTENTFUL_HOST
+  }
+}
 
 module.exports = {
   siteMetadata: {
@@ -12,10 +27,7 @@ module.exports = {
   plugins: [
     {
       resolve: `gatsby-source-contentful`,
-      options: {
-        spaceId: process.env.CONTENTFUL_SPACE_ID,
-        accessToken: process.env.CONTENTFUL_DELIVERY_TOKEN,
-      },
+      options: contentfulConfig,
     },
     `gatsby-plugin-material-ui`,
     {
