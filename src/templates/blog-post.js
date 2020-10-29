@@ -83,6 +83,9 @@ const useStyles = makeStyles(theme => ({
   content: {
     fontSize: `1.125rem`,
     lineHeight: `1.8`,
+    '& strong': {
+      background: `linear-gradient(transparent 60%, #ffb0ad 60%)`,
+    },
     '& a': {
       color: myTheme.palette.primary.main,
     },
