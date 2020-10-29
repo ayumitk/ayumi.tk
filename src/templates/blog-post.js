@@ -18,7 +18,9 @@ import Chip from '../components/Chip'
 import Bio from '../components/Bio'
 
 const useStyles = makeStyles(theme => ({
-  root: {},
+  root: {
+    paddingTop: `1rem`,
+  },
   hero: {
     lineHeight: 0,
     '& img': {
@@ -26,7 +28,7 @@ const useStyles = makeStyles(theme => ({
     },
   },
   postContainer: {
-    maxWidth: `748px`,
+    maxWidth: `728px`,
   },
   tableOfContents: {
     background: `#ececec`,
@@ -42,29 +44,41 @@ const useStyles = makeStyles(theme => ({
     },
     '& ul': {
       margin: 0,
-      // padding: 0,
+      listStyle: `decimal`,
+      paddingLeft: `2rem`,
+      color: myTheme.palette.primary.main,
     },
     '& li': {
       fontWeight: '700',
-      // listStyle: `none`,
+      borderBottom: `solid 1px #ccc`,
+      padding: `0.75rem 0`,
     },
     '& li ul': {
-      // paddingLeft: `1.5rem`,
+      listStyle: `disc`,
+      paddingLeft: `1.25rem`,
     },
     '& li li': {
       fontWeight: '400',
+      border: 0,
+      padding: `0.25rem 0`,
     },
     '& a': {
       color: myTheme.palette.secondary.main,
       textDecoration: `none`,
     },
     '& li p': {
-      margin: `1rem 0 0.5rem 0`,
+      margin: `0`,
     },
   },
   tableOfContentsHeading: {
     fontWeight: `700`,
     fontSize: `1.125rem`,
+    textAlign: `center`,
+    width: `100%`,
+  },
+  tableOfContentsDetails: {
+    borderTop: `solid 1px #ccc`,
+    display: `block`,
   },
   content: {
     fontSize: `1.125rem`,
@@ -87,19 +101,23 @@ const useStyles = makeStyles(theme => ({
       borderWidth: `0px`,
       borderRadius: `4px`,
     },
+    '& h2,& h3': {
+      marginTop: `8rem`,
+      marginBottom: `-0.75rem`,
+    },
     '& h2': {
-      fontSize: `2rem`,
-      margin: `0 0 1.5rem 0`,
+      fontSize: `1.75rem`,
+      // margin: `2rem 0`,
     },
     '& h3': {
-      fontSize: `1.5rem`,
-      margin: `5rem 0 0 0`,
+      fontSize: `1.375rem`,
+      // margin: `5rem 0 0 0`,
     },
     '& h2 + h3': {
-      margin: `3rem 0 0 0`,
+      // margin: `3rem 0 0 0`,
     },
     '& p': {
-      margin: `1.5rem 0 0 0`,
+      marginTop: `2.5rem`,
     },
     '& ul, & ol': {
       margin: `3rem 0`,
@@ -228,7 +246,7 @@ const BlogPost = ({ data }) => {
                 <FormattedMessage id="tableOfContents" />
               </Typography>
             </ExpansionPanelSummary>
-            <ExpansionPanelDetails>
+            <ExpansionPanelDetails className={classes.tableOfContentsDetails}>
               <div
                 dangerouslySetInnerHTML={{
                   __html: data.contentfulPost.childContentfulPostMarkdownTextNode.childMarkdownRemark.tableOfContents,
