@@ -32,6 +32,7 @@
     "gatsby-remark-prismjs": "^3.4.0",
     "gatsby-remark-responsive-iframe": "^2.3.0",
     "gatsby-remark-smartypants": "^2.2.0",
+    "gatsby-remark-twemoji-shortcut": "^0.10.1",
     "gatsby-source-contentful": "^2.1.95",
     "gatsby-source-filesystem": "^2.1.56",
     "gatsby-transformer-remark": "^2.7.0",
