@@ -9,7 +9,9 @@ const useStyles = makeStyles(theme => ({
   root: {
     display: `flex`,
     alignItems: `center`,
-    marginBottom: `1rem`,
+    marginBottom: `2rem`,
+    padding: `2rem 0`,
+    borderBottom: `solid 1px #ccc`,
   },
   large: {
     width: theme.spacing(7),

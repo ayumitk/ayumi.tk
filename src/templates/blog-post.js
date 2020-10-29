@@ -20,6 +20,12 @@ import Bio from '../components/Bio'
 const useStyles = makeStyles(theme => ({
   root: {
     paddingTop: `1rem`,
+    '& img.emoji': {
+      height: `1em`,
+      width: `1em`,
+      margin: `0 .05em 0 .1em`,
+      verticalAlign: `-0.1em`,
+    },
   },
   hero: {
     lineHeight: 0,
@@ -33,7 +39,6 @@ const useStyles = makeStyles(theme => ({
   tableOfContents: {
     background: `#ececec`,
     maxWidth: `500px`,
-    margin: `3rem auto`,
     fontSize: `1rem`,
     lineHeight: 1.6,
     '&:before': {
@@ -83,18 +88,16 @@ const useStyles = makeStyles(theme => ({
   content: {
     fontSize: `1.125rem`,
     lineHeight: `1.8`,
-    '& img.emoji': {
-      height: `1em`,
-      width: `1em`,
-      margin: `0 .05em 0 .1em`,
-      verticalAlign: `-0.1em`,
-    },
     '& strong': {
       background: `linear-gradient(transparent 60%, #ffb0ad 60%)`,
     },
     '& a': {
-      // color: myTheme.palette.primary.main,
       color: `#0062DA`,
+    },
+    '& code a': {
+      color: `#cbccc6`,
+      pointerEvents: `none`,
+      textDecoration: `none`,
     },
     '& .gatsby-resp-image-wrapper': {
       maxWidth: `680px !important`,
@@ -107,56 +110,49 @@ const useStyles = makeStyles(theme => ({
       height: `4px`,
       width: `120px`,
       backgroundColor: `rgba(33, 37, 41, 0.1)`,
-      margin: `4rem auto`,
+      margin: `5rem auto`,
       borderWidth: `0px`,
       borderRadius: `4px`,
     },
-    '& h2,& h3': {
+    '& h2, & h3': {
       marginTop: `8rem`,
       marginBottom: `-0.75rem`,
     },
     '& h2': {
       fontSize: `1.75rem`,
-      // margin: `2rem 0`,
     },
     '& h3': {
       fontSize: `1.375rem`,
-      // margin: `5rem 0 0 0`,
     },
-    '& h2 + h3': {
-      // margin: `3rem 0 0 0`,
+    '& p, & ul, & ol, & h2 + h3, & table': {
+      marginTop: `3rem`,
     },
-    '& p': {
-      marginTop: `2.5rem`,
-    },
-    '& ul, & ol': {
-      margin: `3rem 0`,
+    '& hr + h2': {
+      marginTop: `5rem`,
     },
     '& ol': {
       padding: `2rem 3rem`,
-      backgroundColor: `#f6eeee`,
-      border: `solid 2px #f6d4d4`,
+      backgroundColor: `#eef1f5`,
+      border: `solid 2px #d7e0ea`,
       '& li': {
-        borderBottom: `dashed 2px #f6d4d4`,
+        borderBottom: `solid 1px #d7e0ea`,
         padding: `0.5rem 0`,
+        color: `#0062DA`,
       },
-    },
-    '& p img': {
-      margin: `2rem 0`,
     },
     '& blockquote': {
       background: `rgba(0, 0, 0, 0.05)`,
-      padding: `0.01rem 2rem 1.5rem 2rem`,
-      margin: `3rem 0px`,
+      padding: `1.5rem 2rem`,
       borderLeft: `3px solid rgb(28, 27, 32)`,
       fontSize: `1rem`,
-      '& a': {
-        color: myTheme.palette.secondary.main,
+      margin: `3rem 0`,
+      lineHeight: `1.6`,
+      '& p': {
+        margin: 0,
       },
     },
     '& table': {
       width: `100%`,
-      margin: `3rem 0`,
       borderCollapse: `collapse`,
       borderSpacing: 0,
     },

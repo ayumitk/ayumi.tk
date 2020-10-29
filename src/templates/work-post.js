@@ -31,6 +31,10 @@ const useStyles = makeStyles(theme => ({
       color: `#666`,
     },
   },
+  footer: {
+    maxWidth: `680px`,
+    margin: `auto`,
+  },
 }))
 
 const WorkPost = ({ pageContext, data }) => {
@@ -97,7 +101,7 @@ const WorkPost = ({ pageContext, data }) => {
           />
 
           {/* Blog Post Footer */}
-          <footer>
+          <footer className={classes.footer}>
             <Typography
               variant="h5"
               component="p"

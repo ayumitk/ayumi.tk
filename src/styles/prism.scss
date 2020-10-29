@@ -5,12 +5,12 @@ code {
   padding: 0.15rem 0.35rem;
   background: rgba(0, 0, 0, 0.075);
 }
-pre code{
+pre code {
   color: #cbccc6;
   background: transparent;
 }
-pre{
-  margin:0;
+pre {
+  margin: 0;
 }
 code[class*="language-"] {
   font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
@@ -175,7 +175,7 @@ pre[class*="language-"] {
 
 .gatsby-highlight,
 .gatsby-code-title,
-.gatsby-code-button-container{
+.gatsby-code-button-container {
   margin-top: 2rem;
 }
 
