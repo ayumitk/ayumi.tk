@@ -60,14 +60,14 @@ const useStyles = makeStyles(theme => ({
     '& li li': {
       fontWeight: '400',
       border: 0,
-      padding: `0.25rem 0`,
+      padding: `0.15rem 0`,
     },
     '& a': {
       color: myTheme.palette.secondary.main,
       textDecoration: `none`,
     },
     '& li p': {
-      margin: `0`,
+      margin: `0 0 0.25rem 0`,
     },
   },
   tableOfContentsHeading: {
@@ -83,11 +83,18 @@ const useStyles = makeStyles(theme => ({
   content: {
     fontSize: `1.125rem`,
     lineHeight: `1.8`,
+    '& img.emoji': {
+      height: `1em`,
+      width: `1em`,
+      margin: `0 .05em 0 .1em`,
+      verticalAlign: `-0.1em`,
+    },
     '& strong': {
       background: `linear-gradient(transparent 60%, #ffb0ad 60%)`,
     },
     '& a': {
-      color: myTheme.palette.primary.main,
+      // color: myTheme.palette.primary.main,
+      color: `#0062DA`,
     },
     '& .gatsby-resp-image-wrapper': {
       maxWidth: `680px !important`,
@@ -212,7 +219,7 @@ const BlogPost = ({ data }) => {
         title={data.contentfulPost.title}
         description={data.contentfulPost.description && data.contentfulPost.description}
       />
-      <Container maxWidth="false" className={classes.postContainer}>
+      <Container className={classes.postContainer}>
         <article className={classes.root}>
           {/* Blog Post Header */}
           <header>

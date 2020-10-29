@@ -33,7 +33,6 @@ module.exports = {
         },
         plugins: [
           'gatsby-remark-code-titles', // IMPORTANT: this must be ahead of other plugins that use code blocks
-          'gatsby-remark-twemoji-shortcut',
           {
             resolve: 'gatsby-remark-code-buttons',
             options: {
@@ -94,6 +93,7 @@ module.exports = {
           },
           'gatsby-remark-copy-linked-files',
           'gatsby-remark-smartypants',
+          'gatsby-remark-twemoji',
         ],
       },
     },
