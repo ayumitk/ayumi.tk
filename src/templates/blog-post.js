@@ -20,6 +20,9 @@ import Bio from '../components/Bio'
 const useStyles = makeStyles(theme => ({
   root: {
     paddingTop: `1rem`,
+    [theme.breakpoints.down('xs')]: {
+      paddingTop: 0,
+    },
     '& img.emoji': {
       height: `1em`,
       width: `1em`,
@@ -41,17 +44,26 @@ const useStyles = makeStyles(theme => ({
     maxWidth: `500px`,
     fontSize: `1rem`,
     lineHeight: 1.6,
+    [theme.breakpoints.down('xs')]: {
+      fontSize: `0.937rem`,
+    },
     '&:before': {
       display: `none`,
     },
-    '&.Mui-expanded': {
+    '&.MuiPaper-root': {
       margin: `3rem auto`,
+      [theme.breakpoints.down('xs')]: {
+        marginTop: `1rem`,
+      },
     },
     '& ul': {
       margin: 0,
       listStyle: `decimal`,
       paddingLeft: `2rem`,
       color: myTheme.palette.primary.main,
+      [theme.breakpoints.down('xs')]: {
+        paddingLeft: `1rem`,
+      },
     },
     '& li': {
       fontWeight: '700',
@@ -80,6 +92,9 @@ const useStyles = makeStyles(theme => ({
     fontSize: `1.125rem`,
     textAlign: `center`,
     width: `100%`,
+    [theme.breakpoints.down('xs')]: {
+      fontSize: `1rem`,
+    },
   },
   tableOfContentsDetails: {
     borderTop: `solid 1px #ccc`,
@@ -88,8 +103,11 @@ const useStyles = makeStyles(theme => ({
   content: {
     fontSize: `1.125rem`,
     lineHeight: `1.8`,
+    [theme.breakpoints.down('xs')]: {
+      fontSize: `1rem`,
+    },
     '& strong': {
-      background: `linear-gradient(transparent 60%, #ffb0ad 60%)`,
+      background: `linear-gradient(transparent 70%, #ffdad9 70%)`,
     },
     '& a': {
       color: `#0062DA`,
@@ -113,22 +131,42 @@ const useStyles = makeStyles(theme => ({
       margin: `5rem auto`,
       borderWidth: `0px`,
       borderRadius: `4px`,
+      [theme.breakpoints.down('xs')]: {
+        margin: `4rem auto`,
+      },
     },
     '& h2, & h3': {
       marginTop: `8rem`,
       marginBottom: `-0.75rem`,
+      [theme.breakpoints.down('xs')]: {
+        marginTop: `6rem`,
+      },
     },
     '& h2': {
       fontSize: `1.75rem`,
+      lineHeight: `1.25`,
+      [theme.breakpoints.down('xs')]: {
+        fontSize: `1.5rem`,
+      },
     },
     '& h3': {
       fontSize: `1.375rem`,
+      lineHeight: `1.25`,
+      [theme.breakpoints.down('xs')]: {
+        fontSize: `1.25rem`,
+      },
     },
     '& p, & ul, & ol, & h2 + h3, & table': {
       marginTop: `3rem`,
+      [theme.breakpoints.down('xs')]: {
+        marginTop: `2rem`,
+      },
     },
     '& hr + h2': {
       marginTop: `5rem`,
+      [theme.breakpoints.down('xs')]: {
+        marginTop: `4rem`,
+      },
     },
     '& ol': {
       padding: `2rem 3rem`,
@@ -147,6 +185,9 @@ const useStyles = makeStyles(theme => ({
       fontSize: `1rem`,
       margin: `3rem 0`,
       lineHeight: `1.6`,
+      [theme.breakpoints.down('xs')]: {
+        padding: `1rem 1.5rem`,
+      },
       '& p': {
         margin: 0,
       },
@@ -174,7 +215,14 @@ const useStyles = makeStyles(theme => ({
   },
   postTitle: {
     fontSize: `2rem`,
+    lineHeight: `1.25`,
     margin: 0,
+    [theme.breakpoints.down('sm')]: {
+      fontSize: `1.75rem`,
+    },
+    [theme.breakpoints.down('xs')]: {
+      fontSize: `1.5rem`,
+    },
   },
   postDescription: {
     color: `#666`,
