@@ -2,13 +2,18 @@ require('dotenv').config({
   path: `.env`,
 })
 
-const contentfulConfig = {
-  spaceId: process.env.CONTENTFUL_SPACE_ID,
-  accessToken: process.env.CONTENTFUL_DELIVERY_TOKEN,
-  host: process.env.CONTENTFUL_HOST,
-}
+let contentfulConfig = {}
 if (process.env.CONTEXT !== 'production') {
-  contentfulConfig.accessToken = process.env.CONTENTFUL_PREVIEW_TOKEN
+  contentfulConfig = {
+    spaceId: process.env.CONTENTFUL_SPACE_ID,
+    accessToken: process.env.CONTENTFUL_PREVIEW_TOKEN,
+    host: process.env.CONTENTFUL_HOST,
+  }
+} else {
+  contentfulConfig = {
+    spaceId: process.env.CONTENTFUL_SPACE_ID,
+    accessToken: process.env.CONTENTFUL_DELIVERY_TOKEN,
+  }
 }
 
 module.exports = {
