@@ -2,6 +2,15 @@ require('dotenv').config({
   path: `.env`,
 })
 
+const contentfulConfig = {
+  spaceId: process.env.CONTENTFUL_SPACE_ID,
+  accessToken: process.env.CONTENTFUL_DELIVERY_TOKEN,
+  host: process.env.CONTENTFUL_HOST,
+}
+if (process.env.CONTEXT !== 'production') {
+  contentfulConfig.accessToken = process.env.CONTENTFUL_PREVIEW_TOKEN
+}
+
 module.exports = {
   siteMetadata: {
     title: `Ayumi Takahashi`,
@@ -12,10 +21,7 @@ module.exports = {
   plugins: [
     {
       resolve: `gatsby-source-contentful`,
-      options: {
-        spaceId: process.env.CONTENTFUL_SPACE_ID,
-        accessToken: process.env.CONTENTFUL_DELIVERY_TOKEN,
-      },
+      options: contentfulConfig,
     },
     `gatsby-plugin-material-ui`,
     {
@@ -87,6 +93,7 @@ module.exports = {
           },
           'gatsby-remark-copy-linked-files',
           'gatsby-remark-smartypants',
+          'gatsby-remark-twemoji',
         ],
       },
     },

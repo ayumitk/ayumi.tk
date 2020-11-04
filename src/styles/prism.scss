@@ -6,16 +6,16 @@ code {
   background: rgba(0, 0, 0, 0.075);
   word-break: break-all;
 }
-pre code{
+pre code {
   color: #cbccc6;
   background: transparent;
 }
-pre{
-  margin:0;
+pre {
+  margin: 0;
   word-break: break-all;
 }
 code[class*="language-"] {
-  display:none;
+  display: none;
   font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
   text-align: left;
   white-space: pre-wrap;
@@ -178,7 +178,7 @@ pre[class*="language-"] {
 
 .gatsby-highlight,
 .gatsby-code-title,
-.gatsby-code-button-container{
+.gatsby-code-button-container {
   margin-top: 2rem;
 }
 
