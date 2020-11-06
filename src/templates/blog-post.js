@@ -105,11 +105,27 @@ const useStyles = makeStyles({
     '& a': {
       color: `#0062DA`,
     },
-    '& code a': {
-      color: `#cbccc6`,
-      pointerEvents: `none`,
-      textDecoration: `none`,
-    },
+    // '& code': {
+    //   display: `inline-block`,
+    //   color: `rgb(28, 27, 32)`,
+    //   padding: `0.15rem 0.35rem`,
+    //   background: `rgba(0, 0, 0, 0.075)`,
+    //   wordBreak: `break-all`,
+    // },
+    // '& pre code': {
+    //   color: `#cbccc6`,
+    //   background: `transparent`,
+    //   padding: `1rem`,
+    // },
+    // '& code a': {
+    //   color: `#cbccc6`,
+    //   pointerEvents: `none`,
+    //   textDecoration: `none`,
+    // },
+    // '& pre': {
+    //   background: `#1f2430`,
+    //   lineHeight: `1.5`,
+    // },
     '& .gatsby-resp-image-wrapper': {
       maxWidth: `680px !important`,
     },
