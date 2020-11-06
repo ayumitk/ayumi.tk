@@ -1,90 +1,71 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
-import { Link } from 'gatsby-plugin-intl'
-import Img from 'gatsby-image'
-import { makeStyles, Card, CardActionArea, CardContent, Typography, Container } from '@material-ui/core'
+import { Typography, Container } from '@material-ui/core'
 import { SEO, Layout, BlogGrid } from '../components'
-import myTheme from '../styles/theme'
 
-const useStyles = makeStyles(theme => ({
-  root: {},
-  blogGrid: {
-    display: `grid`,
-    gridTemplateColumns: `1fr 1fr 1fr 1fr`,
-    gridGap: `20px`,
-    margin: theme.spacing(5, 0),
-    [theme.breakpoints.down('md')]: {
-      gridTemplateColumns: `1fr 1fr 1fr`,
-    },
-    [theme.breakpoints.down('sm')]: {
-      gridTemplateColumns: `1fr 1fr`,
-    },
-    [theme.breakpoints.down('xs')]: {
-      gridTemplateColumns: `1fr`,
-    },
-    '& a': {
-      textDecoration: `none`,
-    },
-  },
-}))
-
-const BlogTagRoute = ({ data, pageContext }) => {
-  const classes = useStyles()
-  const { tag } = pageContext
-
-  let totalCount = 0
-  data.allContentfulPost.nodes.forEach(post => {
-    if (post.title) {
-      totalCount += 1
-    }
-  })
+const BlogTagIndex = ({ data }) => {
+  const posts = data.allContentfulBlog.nodes
+  const tag = data.allContentfulTag.nodes[0]
 
   return (
-    <Layout>
-      <SEO title={tag} />
+    <Layout customSEO>
+      <SEO archive={tag} />
       <Container maxWidth="lg" style={{ paddingTop: '2.5rem' }}>
         <Typography variant="h2" component="h1" gutterBottom align="center">
-          {`#${tag}`} <small>({totalCount})</small>
+          {`#${tag.title}`} <small>({posts.length})</small>
         </Typography>
 
-        <BlogGrid posts={data.allContentfulPost.nodes} />
+        <BlogGrid posts={posts} />
       </Container>
     </Layout>
   )
 }
 
-export const query = graphql`
-  query blogTagQuery($tag: String, $locale: String) {
-    allContentfulPost(
+export const pageQuery = graphql`
+  query PostTagIndexQuery($slug: String, $locale: String) {
+    allContentfulBlog(
       sort: { fields: publishedAt, order: DESC }
-      filter: { tag: { in: [$tag] }, node_locale: { eq: $locale } }
+      filter: { tags: { elemMatch: { slug: { eq: $slug } } }, node_locale: { eq: $locale } }
     ) {
       nodes {
         contentful_id
         title
-        path
-        description
+        slug
+        description {
+          description
+        }
         publishedAt(formatString: "MMMM DD, YYYY")
         hero {
           title
           description
-          fluid(maxWidth: 1200) {
+          fluid(maxWidth: 800) {
             ...GatsbyContentfulFluid
           }
         }
       }
     }
+    allContentfulTag(filter: { node_locale: { eq: $locale }, slug: { eq: $slug } }) {
+      nodes {
+        title
+        description {
+          description
+        }
+        slug
+      }
+    }
   }
 `
 
-BlogTagRoute.propTypes = {
+BlogTagIndex.propTypes = {
   data: PropTypes.shape({
-    allContentfulPost: PropTypes.shape({
+    allContentfulBlog: PropTypes.shape({
+      nodes: PropTypes.array,
+    }),
+    allContentfulTag: PropTypes.shape({
       nodes: PropTypes.array,
     }),
   }).isRequired,
-  pageContext: PropTypes.object.isRequired,
 }
 
-export default BlogTagRoute
+export default BlogTagIndex

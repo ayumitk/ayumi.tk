@@ -1,13 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
-import { injectIntl, Link, FormattedMessage } from 'gatsby-plugin-intl'
+import { injectIntl, Link } from 'gatsby-plugin-intl'
 import { makeStyles, Button, Typography, Container } from '@material-ui/core'
 import { ChevronRight } from '@material-ui/icons'
-import { Layout, SEO, WorkGrid, BlogGrid } from '../components'
-import myTheme from '../styles/theme'
+import { Layout, WorkGrid, BlogGrid } from '../components'
+import theme from '../styles/theme'
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles({
   root: {},
   hero: {
     padding: theme.spacing(8, 0),
@@ -16,10 +16,10 @@ const useStyles = makeStyles(theme => ({
       letterSpacing: `-0.2rem`,
       fontSize: `7rem`,
       lineHeight: 0.9,
-      color: myTheme.palette.primary.main,
+      color: theme.palette.primary.main,
     },
     '& span': {
-      color: myTheme.palette.secondary.main,
+      color: theme.palette.secondary.main,
     },
     '& small': {
       fontSize: `2rem`,
@@ -65,25 +65,37 @@ const useStyles = makeStyles(theme => ({
       height: `1rem`,
     },
   },
-}))
+})
 
-const IndexPage = ({ intl, data }) => {
+const RootIndex = ({ intl, data }) => {
   const classes = useStyles()
+  const { locale } = intl
+
   return (
     <Layout>
-      <SEO title={intl.formatMessage({ id: 'homeTitle' })} />
-
       <h1 className={classes.hero}>
         <strong>
           Hello<span>.</span>
           <br />I am Ayumi,
         </strong>
         <small>
-          <FormattedMessage id="index.profile1" />
-          <br />
-          <FormattedMessage id="index.profile2" />
-          <br />
-          <FormattedMessage id="index.profile3" />
+          {locale === 'en' ? (
+            <>
+              Freelance UI/UX Designer
+              <br />
+              with 10+ years of experience
+              <br />
+              based in Vancouver, Canada.
+            </>
+          ) : (
+            <>
+              10年以上の経験を持ち、
+              <br />
+              カナダ、バンクーバーを拠点に活動する、
+              <br />
+              フリーランスのUI/UXデザイナーです
+            </>
+          )}
         </small>
       </h1>
 
@@ -91,35 +103,37 @@ const IndexPage = ({ intl, data }) => {
         <div style={{ background: '#ff5851', color: '#FFF' }} className={classes.skillContainer}>
           <div style={{ marginLeft: 'auto' }}>
             <Typography variant="h4" component="h2" gutterBottom>
-              <FormattedMessage id="index.design.title" />
+              {locale === 'en' ? 'UI/UX Design' : 'UI/UXデザイン'}
             </Typography>
             <Typography variant="body1" component="h3">
-              <FormattedMessage id="index.design.field.dt" />
+              {locale === 'en' ? 'Things I enjoy designing:' : '得意分野'}
             </Typography>
             <Typography variant="body1" component="p" style={{ marginBottom: '0.75rem' }}>
-              <FormattedMessage id="index.design.field.dd" />
+              {locale === 'en'
+                ? 'Web Application, Landing Page, iOS/Android App, Branding, Logo, Wireframe'
+                : 'Webアプリケーション, ランディングページ, iOS/Androidアプリ, ブランディング, ロゴ, ワイヤーフレーム'}
             </Typography>
             <Typography variant="body1" component="h3">
-              <FormattedMessage id="index.design.tool.dt" />
+              {locale === 'en' ? 'Design Tools:' : 'ツール:'}
             </Typography>
             <Typography variant="body1" component="p">
-              Sketch, Photoshop, Illustrator, Adobe DX, iPad&Pencil
+              Adobe DX, Photoshop, Illustrator, iPad&Pencil
             </Typography>
           </div>
         </div>
         <div style={{ background: '#1c1b20', color: '#ababab' }} className={classes.skillContainer}>
           <div style={{ marginRight: 'auto' }}>
             <Typography variant="h4" component="h2" gutterBottom style={{ color: '#FFF' }}>
-              <FormattedMessage id="index.dev.title" />
+              {locale === 'en' ? 'Front-end Dev' : 'フロントエンド開発'}
             </Typography>
             <Typography variant="body1" component="h3" style={{ color: '#FFF' }}>
-              <FormattedMessage id="index.dev.language.dt" />
+              {locale === 'en' ? 'Languages I speak:' : '言語:'}
             </Typography>
             <Typography variant="body1" component="p" style={{ marginBottom: '0.75rem' }}>
               HTML, CSS, JavaScript
             </Typography>
             <Typography variant="body1" component="h3" style={{ color: '#FFF' }}>
-              <FormattedMessage id="index.dev.tool.dt" />
+              {locale === 'en' ? 'Dev Tools:' : 'ツール:'}
             </Typography>
             <Typography variant="body1" component="p">
               VSCode, React, Gulp, Webpack, npm, Git, Gatsby, Wordpress, Bootstrap
@@ -130,30 +144,30 @@ const IndexPage = ({ intl, data }) => {
 
       <Container maxWidth="lg">
         <Typography variant="h4" component="h2" gutterBottom align="center" style={{ marginBottom: '2.5rem' }}>
-          <FormattedMessage id="blogTitle" />
+          {locale === 'en' ? 'Blog' : 'ブログ記事'}
         </Typography>
 
-        <BlogGrid posts={data.allContentfulPost.nodes} />
+        <BlogGrid posts={data.allContentfulBlog.nodes} />
 
         <div className={classes.seeMoreBtn} style={{ marginBottom: '7.5rem' }}>
           <Link to="/blog">
             <Button variant="contained" color="primary" size="large" className={classes.seeMore}>
-              <FormattedMessage id="seeMore" />
+              {locale === 'en' ? 'See More' : 'もっと見る'}
               <ChevronRight />
             </Button>
           </Link>
         </div>
 
         <Typography variant="h4" component="h2" gutterBottom align="center" style={{ marginBottom: '2.5rem' }}>
-          <FormattedMessage id="workTitle" />
+          {locale === 'en' ? 'Work' : '制作実績'}
         </Typography>
 
-        <WorkGrid works={data.allContentfulWork.nodes} />
+        <WorkGrid posts={data.allContentfulWork.nodes} />
 
         <div className={classes.seeMoreBtn}>
           <Link to="/work">
             <Button variant="contained" color="primary" size="large" className={classes.seeMore}>
-              <FormattedMessage id="seeMore" />
+              {locale === 'en' ? 'See More' : 'もっと見る'}
               <ChevronRight />
             </Button>
           </Link>
@@ -163,33 +177,38 @@ const IndexPage = ({ intl, data }) => {
   )
 }
 
-export const query = graphql`
-  query indexQuery($locale: String) {
-    allContentfulPost(sort: { fields: publishedAt, order: DESC }, filter: { node_locale: { eq: $locale } }, limit: 4) {
+export const pageQuery = graphql`
+  query RootIndexQuery($locale: String) {
+    allContentfulBlog(sort: { fields: publishedAt, order: DESC }, filter: { node_locale: { eq: $locale } }, limit: 4) {
       nodes {
         contentful_id
         title
-        path
-        description
+        slug
+        description {
+          description
+        }
         publishedAt(formatString: "MMMM DD, YYYY")
+        tags {
+          slug
+        }
         hero {
           title
           description
-          fluid(maxWidth: 1200) {
+          fluid(maxWidth: 800) {
             ...GatsbyContentfulFluid
           }
         }
       }
     }
-    allContentfulWork(sort: { fields: publishedAt, order: DESC }, filter: { node_locale: { eq: $locale } }, limit: 6) {
+    allContentfulWork(sort: { fields: publishedAt, order: DESC }, filter: { node_locale: { eq: $locale } }, limit: 3) {
       nodes {
         contentful_id
         title
-        path
+        slug
         hero {
           title
           description
-          fluid(maxWidth: 1200) {
+          fluid(maxWidth: 800) {
             ...GatsbyContentfulFluid
           }
         }
@@ -198,10 +217,10 @@ export const query = graphql`
   }
 `
 
-IndexPage.propTypes = {
+RootIndex.propTypes = {
   intl: PropTypes.object.isRequired,
   data: PropTypes.shape({
-    allContentfulPost: PropTypes.shape({
+    allContentfulBlog: PropTypes.shape({
       nodes: PropTypes.array,
     }),
     allContentfulWork: PropTypes.shape({
@@ -210,4 +229,4 @@ IndexPage.propTypes = {
   }).isRequired,
 }
 
-export default injectIntl(IndexPage)
+export default injectIntl(RootIndex)

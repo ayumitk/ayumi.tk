@@ -2,13 +2,11 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
 import Img from 'gatsby-image'
-import { makeStyles, useTheme, Container, Typography } from '@material-ui/core'
+import { makeStyles, Container, Typography } from '@material-ui/core'
 import { DiscussionEmbed } from 'disqus-react'
-import myTheme from '../styles/theme'
 import { Layout, SEO, Tag, Bio } from '../components'
-import '../styles/prism.scss'
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles({
   root: {},
   workDescription: {
     maxWidth: `640px`,
@@ -30,62 +28,48 @@ const useStyles = makeStyles(theme => ({
     maxWidth: `680px`,
     margin: `auto`,
   },
-}))
+})
 
 const WorkPost = ({ data }) => {
   const classes = useStyles()
-  const theme = useTheme()
+  const post = data.contentfulWork
 
   const disqusConfig = {
     shortname: process.env.GATSBY_DISQUS_NAME,
-    config: { identifier: data.contentfulWork.path, title: data.contentfulWork.title },
+    config: { identifier: post.slug, title: post.title },
   }
 
-  const kebabCase = string =>
-    string
-      .match(/[A-Z]{2,}(?=[A-Z][a-z0-9]*|\b)|[A-Z]?[a-z0-9]*|[A-Z]|[0-9]+/g)
-      .filter(Boolean)
-      .map(x => x.toLowerCase())
-      .join('-')
-
-  if (!data.contentfulWork.title) {
-    return <Layout>Sorry, no English version of this post available. Please check related posts.</Layout>
+  if (!post.title) {
+    return <Layout>Sorry, no English version of this work available.</Layout>
   }
 
   return (
-    <Layout>
-      <SEO
-        title={data.contentfulWork.title}
-        description={data.contentfulWork.description && data.contentfulWork.description}
-      />
+    <Layout customSEO>
+      <SEO post={post} article />
       <Container maxWidth="lg">
         <article className={classes.root}>
           {/* Hero Image */}
           <div className={classes.hero}>
-            <Img fluid={data.contentfulWork.hero.fluid} />
+            <Img fluid={post.hero.fluid} />
           </div>
 
           {/* Blog Post Header */}
           <header style={{ margin: '6rem 0' }}>
             <Typography variant="h2" component="h1" gutterBottom align="center">
-              {data.contentfulWork.title}
+              {post.title}
             </Typography>
-            {/* <h1 className={classes.workTitle}>{data.contentfulWork.title}</h1> */}
+            {/* <h1 className={classes.workTitle}>{post.title}</h1> */}
             <div style={{ textAlign: 'center', marginBottom: '1rem' }}>
-              {data.contentfulWork.tag &&
-                data.contentfulWork.tag
-                  .sort()
-                  .map(tag => <Tag label={`#${tag}`} to={`/work/tag/${kebabCase(tag)}`} key={kebabCase(tag)} />)}
+              {post.tags &&
+                post.tags.map(tag => <Tag label={`#${tag.title}`} to={`/work/tag/${tag.slug}/`} key={tag.slug} />)}
             </div>
-            <p className={classes.workDescription}>
-              {data.contentfulWork.description && data.contentfulWork.description}
-            </p>
+            <p className={classes.workDescription}>{post.description && post.description.description}</p>
           </header>
 
           {/* Markdown */}
           <div
             className={classes.content}
-            dangerouslySetInnerHTML={{ __html: data.contentfulWork.markdown.childMarkdownRemark.html }}
+            dangerouslySetInnerHTML={{ __html: post.markdown.childMarkdownRemark.html }}
           />
 
           {/* Blog Post Footer */}
@@ -100,10 +84,8 @@ const WorkPost = ({ data }) => {
               Thank you for scrolling!
             </Typography>
             <div style={{ textAlign: 'center' }}>
-              {data.contentfulWork.tag &&
-                data.contentfulWork.tag
-                  .sort()
-                  .map(tag => <Tag label={`#${tag}`} to={`/work/tag/${kebabCase(tag)}`} key={kebabCase(tag)} />)}
+              {post.tags &&
+                post.tags.map(tag => <Tag label={`#${tag.title}`} to={`/work/tag/${tag.slug}/`} key={tag.slug} />)}
             </div>
             <Bio />
             <DiscussionEmbed {...disqusConfig} />
@@ -115,12 +97,18 @@ const WorkPost = ({ data }) => {
 }
 
 export const query = graphql`
-  query ContentFulWork($slug: String) {
-    contentfulWork(path: { eq: $slug }) {
-      path
+  query ContentFulWork($slug: String, $locale: String) {
+    contentfulWork(slug: { eq: $slug }, node_locale: { eq: $locale }) {
+      slug
+      node_locale
       title
-      tag
-      description
+      tags {
+        title
+        slug
+      }
+      description {
+        description
+      }
       markdown {
         childMarkdownRemark {
           html

@@ -3,9 +3,9 @@ import PropTypes from 'prop-types'
 import { Link } from 'gatsby-plugin-intl'
 import { makeStyles, Card, CardActionArea, CardContent, Typography } from '@material-ui/core'
 import Img from 'gatsby-image'
-import myTheme from '../styles/theme'
+import theme from '../styles/theme'
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles({
   root: {
     display: `grid`,
     gridTemplateColumns: `1fr 1fr 1fr 1fr`,
@@ -24,7 +24,7 @@ const useStyles = makeStyles(theme => ({
       textDecoration: `none`,
     },
   },
-}))
+})
 
 const BlogGrid = ({ posts }) => {
   const classes = useStyles()
@@ -36,7 +36,7 @@ const BlogGrid = ({ posts }) => {
         }
 
         return (
-          <Link to={`/blog/${post.path}`} key={post.contentful_id}>
+          <Link to={`/blog/${post.slug}/`} key={post.contentful_id}>
             <Card>
               <CardActionArea>
                 <Img fluid={post.hero.fluid} />

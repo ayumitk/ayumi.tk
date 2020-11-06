@@ -19,8 +19,7 @@ exports.onCreatePage = ({ page, actions }) => {
 // Create post and work pages
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions
-  const blogPostTemplate = path.resolve(`src/templates/blog-post.js`)
-  const workDetailTemplate = path.resolve(`src/templates/work-post.js`)
+
   // Query for markdown nodes to use in creating pages.
   // You can query for whatever data you want to create pages for e.g.
   // products, portfolio items, landing pages, etc.
@@ -28,19 +27,23 @@ exports.createPages = ({ graphql, actions }) => {
   return graphql(
     `
       query MyQuery {
-        allContentfulPost {
+        allContentfulBlog {
           edges {
             node {
-              path
-              tag
+              slug
+              tags {
+                slug
+              }
             }
           }
         }
         allContentfulWork {
           edges {
             node {
-              path
-              tag
+              slug
+              tags {
+                slug
+              }
             }
           }
         }
@@ -52,77 +55,81 @@ exports.createPages = ({ graphql, actions }) => {
     }
 
     // Create blog post pages.
-    result.data.allContentfulPost.edges.forEach(edge => {
-      const { path } = edge.node
+    const blogs = result.data.allContentfulBlog.edges
+    blogs.forEach(edge => {
+      const { slug } = edge.node
 
       createPage({
         // Path for this page — required
-        path: `/blog/${path}`,
-        component: blogPostTemplate,
+        path: `/blog/${slug}`,
+        component: path.resolve(`src/templates/blog-post.js`),
         context: {
-          slug: path,
+          slug,
         },
       })
     })
 
     // Tag pages for post:
-    let postTags = []
+    let allPostTags = []
     // Iterate through each post, putting all found tags into `tags`
-    result.data.allContentfulPost.edges.forEach(edge => {
-      if (_.get(edge, 'node.tag')) {
-        postTags = postTags.concat(edge.node.tag)
+    blogs.forEach(edge => {
+      if (_.get(edge, 'node.tags')) {
+        allPostTags = allPostTags.concat(edge.node.tags)
       }
     })
+
     // Eliminate duplicate tags
-    postTags = _.uniq(postTags)
+    const postTags = allPostTags.filter(
+      (item, index, array) => array.findIndex(item2 => item.slug === item2.slug) === index
+    )
 
     // Make tag pages
     postTags.forEach(tag => {
-      const tagPath = `/blog/tag/${_.kebabCase(tag)}/`
-
       createPage({
-        path: tagPath,
+        path: `/blog/tag/${tag.slug}/`,
         component: path.resolve('src/templates/blog-tag.js'),
         context: {
-          tag,
+          slug: tag.slug,
         },
       })
     })
 
     // Create work detail pages.
-    result.data.allContentfulWork.edges.forEach(edge => {
-      const { path } = edge.node
+    const works = result.data.allContentfulWork.edges
+    works.forEach(edge => {
+      const { slug } = edge.node
 
       createPage({
         // Path for this page — required
-        path: `/work/${path}`,
-        component: workDetailTemplate,
+        path: `/work/${slug}`,
+        component: path.resolve(`src/templates/work-post.js`),
         context: {
-          slug: path,
+          slug,
         },
       })
     })
 
     // Tag pages for work:
-    let workTags = []
-    // Iterate through each post, putting all found tags into `tags`
-    result.data.allContentfulWork.edges.forEach(edge => {
-      if (_.get(edge, 'node.tag')) {
-        workTags = workTags.concat(edge.node.tag)
+    let allWorkTags = []
+    // Iterate through each work, putting all found tags into `tags`
+    works.forEach(edge => {
+      if (_.get(edge, 'node.tags')) {
+        allWorkTags = allWorkTags.concat(edge.node.tags)
       }
     })
+
     // Eliminate duplicate tags
-    workTags = _.uniq(workTags)
+    const workTags = allWorkTags.filter(
+      (item, index, array) => array.findIndex(item2 => item.slug === item2.slug) === index
+    )
 
     // Make tag pages
     workTags.forEach(tag => {
-      const tagPath = `/work/tag/${_.kebabCase(tag)}/`
-
       createPage({
-        path: tagPath,
+        path: `/work/tag/${tag.slug}/`,
         component: path.resolve('src/templates/work-tag.js'),
         context: {
-          tag,
+          slug: tag.slug,
         },
       })
     })

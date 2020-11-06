@@ -1,6 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { useStaticQuery, graphql } from 'gatsby'
 import { Link } from 'gatsby-plugin-intl'
 import MenuIcon from '@material-ui/icons/Menu'
 import {
@@ -12,20 +11,21 @@ import {
   List,
   Typography,
   makeStyles,
-  useTheme,
   ThemeProvider,
   Container,
   AppBar,
   Toolbar,
 } from '@material-ui/core'
-import myTheme from '../styles/theme'
+import theme from '../styles/theme'
 import Nav from './Nav'
 import Language from './Language'
 import Footer from './Footer'
+import SEO from './seo'
+import useBuildTime from '../hooks/useBuildTime'
 
 const drawerWidth = 240
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles({
   root: {
     display: 'flex',
     '& h1': {
@@ -48,7 +48,7 @@ const useStyles = makeStyles(theme => ({
   },
   title: {
     '& a': {
-      color: myTheme.palette.secondary.main,
+      color: theme.palette.secondary.main,
       textDecoration: `none`,
       textTransform: `uppercase`,
       fontWeight: `600`,
@@ -61,15 +61,15 @@ const useStyles = makeStyles(theme => ({
   },
   drawerPaper: {
     width: drawerWidth,
-    backgroundColor: myTheme.palette.background.dark,
-    color: myTheme.palette.secondary.light,
+    backgroundColor: theme.palette.background.dark,
+    color: theme.palette.secondary.light,
     '& hr': {
       backgroundColor: `rgba(255, 255, 255, 0.15)`,
     },
   },
   drawerNav: {
     '& a': {
-      color: myTheme.palette.secondary.light,
+      color: theme.palette.secondary.light,
       display: `block`,
       padding: theme.spacing(2),
       fontSize: `1.125rem`,
@@ -85,7 +85,7 @@ const useStyles = makeStyles(theme => ({
     boxShadow: `none`,
   },
   menuButton: {
-    color: myTheme.palette.secondary.main,
+    color: theme.palette.secondary.main,
     [theme.breakpoints.up('sm')]: {
       display: 'none',
     },
@@ -108,7 +108,7 @@ const useStyles = makeStyles(theme => ({
     '& a': {
       fontSize: `1.125rem`,
       padding: theme.spacing(1),
-      color: myTheme.palette.secondary.main,
+      color: theme.palette.secondary.main,
       textDecoration: `none`,
       '&:hover': {
         textDecoration: `underline`,
@@ -120,26 +120,15 @@ const useStyles = makeStyles(theme => ({
       paddingRight: 0,
     },
   },
-}))
+})
 
-const Layout = ({ children }) => {
+const Layout = ({ children, customSEO }) => {
   const classes = useStyles()
-  const theme = useTheme()
   const [mobileOpen, setMobileOpen] = React.useState(false)
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen)
   }
-
-  const data = useStaticQuery(graphql`
-    query SiteTitleQuery {
-      site {
-        siteMetadata {
-          title
-        }
-      }
-    }
-  `)
 
   const drawer = (
     <>
@@ -153,15 +142,18 @@ const Layout = ({ children }) => {
     </>
   )
 
+  const buildTime = useBuildTime()
+
   return (
-    <ThemeProvider theme={myTheme}>
+    <ThemeProvider theme={theme}>
       <div className={classes.root}>
         <CssBaseline />
+        {!customSEO && <SEO buildTime={buildTime} />}
         <AppBar position="fixed" className={classes.appBar}>
           <Container maxWidth="lg" className={classes.headerContainer}>
             <Toolbar style={{ justifyContent: 'space-between', padding: 0 }}>
               <Typography variant="h6" noWrap className={classes.title}>
-                <Link to="/">{data.site.siteMetadata.title}</Link>
+                <Link to="/">Ayumi Takahashi</Link>
               </Typography>
 
               <div className={classes.nav}>
@@ -222,8 +214,13 @@ const Layout = ({ children }) => {
   )
 }
 
+export default Layout
+
 Layout.propTypes = {
   children: PropTypes.array.isRequired,
+  customSEO: PropTypes.bool,
 }
 
-export default Layout
+Layout.defaultProps = {
+  customSEO: false,
+}

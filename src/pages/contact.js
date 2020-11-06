@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { injectIntl, FormattedMessage, navigate } from 'gatsby-plugin-intl'
+import { injectIntl, navigate } from 'gatsby-plugin-intl'
 import { Container, Button, Typography, TextField } from '@material-ui/core'
 import { Layout, SEO } from '../components'
 
@@ -36,9 +36,20 @@ class ContactPage extends Component {
 
   render() {
     const { intl } = this.props
+
+    const page = {
+      title: intl.locale === 'en' ? 'Contact' : 'お問い合わせ',
+      description:
+        intl.locale === 'en'
+          ? ''
+          : 'UI/UXデザイン、フロントエンド開発など、お仕事のご依頼や料金のご相談、ご質問などどんなことでもかまいませんので、お気軽にこちらのフォームよりご送信ください。追ってお返事させていただきます。',
+      image: '',
+      slug: 'contact',
+    }
+
     return (
-      <Layout>
-        <SEO title={intl.formatMessage({ id: 'contactTitle' })} />
+      <Layout customSEO>
+        <SEO page={page} />
         <Container maxWidth="sm" style={{ paddingTop: '2.5rem' }}>
           <Typography variant="h2" component="h1" gutterBottom align="center">
             Contact
@@ -60,10 +71,8 @@ class ContactPage extends Component {
               </label>
             </div>
 
-            {/* <FormattedMessage id="contact.name" /> */}
-            {/* <input type="text" name="name" onChange={this.handleChange} id="name" required /> */}
             <TextField
-              label={intl.formatMessage({ id: 'contact.name' })}
+              label={intl.locale === 'en' ? 'Your Name' : 'お名前'}
               style={{ margin: '0 0 2rem 0' }}
               fullWidth
               margin="normal"
@@ -74,9 +83,8 @@ class ContactPage extends Component {
               required
             />
 
-            {/* <FormattedMessage id="contact.email" /> */}
             <TextField
-              label={intl.formatMessage({ id: 'contact.email' })}
+              label={intl.locale === 'en' ? 'Email' : 'Eメール'}
               style={{ margin: '0 0 2rem 0' }}
               fullWidth
               margin="normal"
@@ -87,9 +95,8 @@ class ContactPage extends Component {
               required
             />
 
-            {/* <FormattedMessage id="contact.message" /> */}
             <TextField
-              label={intl.formatMessage({ id: 'contact.message' })}
+              label={intl.locale === 'en' ? 'Message' : 'メッセージ'}
               style={{ margin: '0 0 2rem 0' }}
               multiline
               fullWidth
@@ -102,7 +109,7 @@ class ContactPage extends Component {
 
             <div style={{ textAlign: 'center' }}>
               <Button type="submit" variant="contained" color="primary" size="large">
-                <FormattedMessage id="contact.send" />
+                {intl.locale === 'en' ? 'Send' : '送信'}
               </Button>
             </div>
           </form>

@@ -1,74 +1,65 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { injectIntl } from 'gatsby-plugin-intl'
-import { Container, Typography, makeStyles } from '@material-ui/core'
+import { Container, Typography } from '@material-ui/core'
 import { graphql } from 'gatsby'
 import { Layout, SEO, WorkGrid, Tag } from '../components'
 
-const useStyles = makeStyles(theme => ({
-  root: {},
-}))
-
 const WorkPage = ({ data, intl }) => {
-  const classes = useStyles()
+  const works = data.allContentfulWork.nodes
 
-  let tags = []
-  data.allContentfulWork.nodes.forEach(tag => {
-    tags = tags.concat(tag.tag)
+  let allTags = []
+  works.forEach(work => {
+    allTags = allTags.concat(work.tags)
   })
 
-  function uniq(array) {
-    return array.filter((elem, index, self) => self.indexOf(elem) === index)
+  const tags = allTags.filter((item, index, array) => array.findIndex(item2 => item.slug === item2.slug) === index)
+
+  const page = {
+    title: intl.locale === 'en' ? 'Work' : '制作実績',
+    description:
+      intl.locale === 'en'
+        ? ''
+        : '過去に制作させていただいたwebサイトやロゴ、名刺などのグラフィックデザインを実績として紹介する一覧ページです。',
+    image: '',
+    slug: 'work',
   }
 
-  const uniqTags = uniq(tags).sort()
-
-  const kebabCase = string =>
-    string
-      .match(/[A-Z]{2,}(?=[A-Z][a-z0-9]*|\b)|[A-Z]?[a-z0-9]*|[A-Z]|[0-9]+/g)
-      .filter(Boolean)
-      .map(x => x.toLowerCase())
-      .join('-')
-
-  let totalCount = 0
-  data.allContentfulWork.nodes.forEach(post => {
-    if (post.title) {
-      totalCount += 1
-    }
-  })
-
   return (
-    <Layout>
-      <SEO title={intl.formatMessage({ id: 'workTitle' })} />
+    <Layout customSEO>
+      <SEO page={page} />
       <Container maxWidth="lg" style={{ paddingTop: '2.5rem' }}>
         <Typography variant="h2" component="h1" gutterBottom align="center">
-          Work <small>({totalCount})</small>
+          Work <small>({works.length})</small>
         </Typography>
 
         <div>
-          {uniqTags.map(tag => (
-            <Tag label={`#${tag}`} to={`/work/tag/${kebabCase(tag)}`} key={kebabCase(tag)} />
+          {tags.map(tag => (
+            <Tag label={`#${tag.title}`} to={`/work/tag/${tag.slug}/`} key={tag.slug} />
           ))}
         </div>
 
-        <WorkGrid works={data.allContentfulWork.nodes} />
+        <WorkGrid posts={works} />
       </Container>
     </Layout>
   )
 }
 
-export const query = graphql`
+export const pageQuery = graphql`
   query workQuery($locale: String) {
     allContentfulWork(sort: { fields: publishedAt, order: DESC }, filter: { node_locale: { eq: $locale } }) {
       nodes {
         contentful_id
         title
-        path
-        tag
+        slug
+        tags {
+          title
+          slug
+        }
         hero {
           title
           description
-          fluid(maxWidth: 1200) {
+          fluid(maxWidth: 800) {
             ...GatsbyContentfulFluid
           }
         }

@@ -3,9 +3,9 @@ import PropTypes from 'prop-types'
 import { Link } from 'gatsby-plugin-intl'
 import { makeStyles, Typography } from '@material-ui/core'
 import Img from 'gatsby-image'
-import myTheme from '../styles/theme'
+import theme from '../styles/theme'
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles({
   root: {
     display: `grid`,
     gridTemplateColumns: `1fr 1fr 1fr`,
@@ -43,18 +43,18 @@ const useStyles = makeStyles(theme => ({
       color: 'rgba(255,255,255,0.9)',
     },
   },
-}))
+})
 
-const WorkGrid = ({ works }) => {
+const WorkGrid = ({ posts }) => {
   const classes = useStyles()
   return (
     <div className={classes.root}>
-      {works.map(work => (
-        <Link to={`/work/${work.path}`} key={work.contentful_id} className={classes.workItem}>
-          <Img fluid={work.hero.fluid} />
+      {posts.map(post => (
+        <Link to={`/work/${post.slug}/`} key={post.contentful_id} className={classes.workItem}>
+          <Img fluid={post.hero.fluid} />
           <div className={classes.workItemTitle}>
             <Typography variant="h4" component="h3" align="center">
-              {work.title}
+              {post.title}
             </Typography>
           </div>
         </Link>
@@ -64,7 +64,7 @@ const WorkGrid = ({ works }) => {
 }
 
 WorkGrid.propTypes = {
-  works: PropTypes.array.isRequired,
+  posts: PropTypes.array.isRequired,
 }
 
 export default WorkGrid

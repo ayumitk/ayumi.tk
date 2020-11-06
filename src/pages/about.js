@@ -5,9 +5,9 @@ import { makeStyles, Container, Typography, Button } from '@material-ui/core'
 import { graphql } from 'gatsby'
 import Img from 'gatsby-image'
 import { Layout, SEO } from '../components'
-import myTheme from '../styles/theme'
+import theme from '../styles/theme'
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles({
   root: {},
   about: {
     marginBottom: `5rem`,
@@ -57,10 +57,20 @@ const useStyles = makeStyles(theme => ({
       textAlign: `center`,
     },
   },
-}))
+})
 
 const AboutPage = ({ data, intl }) => {
   const classes = useStyles()
+
+  const page = {
+    title: intl.locale === 'en' ? 'About Me' : '私について',
+    description:
+      intl.locale === 'en'
+        ? "Ayumi Takahashi, Freelance UI/UX Designer. I've worked as a web designer for over 10 years in the Tech industry in Japan and Canada, responsible for branding, art direction, UI/UX design, and front-end development for websites and mobile apps. My extensive experience and background in graphic design allow me to bridge the gap between design and development to create the most beautiful and highly functional websites and mobile apps."
+        : '高橋あゆみ フリーランスUI/UXデザイナー 日本とカナダのIT企業にて10年以上、Webデザイナーとして勤務。Webサイトやモバイルアプリのブランディング、アートディレクション、UI/UXデザイン及びフロントエンド開発を担当。豊富な経験とグラフィックデザインのバックグラウンドにより、デザインと開発のギャップを埋め、美しく高機能なウェブサイトやモバイルアプリを制作します。',
+    image: '',
+    slug: 'about',
+  }
 
   const bio =
     intl.locale === 'en' ? (
@@ -125,8 +135,8 @@ const AboutPage = ({ data, intl }) => {
     )
 
   return (
-    <Layout>
-      <SEO title={intl.formatMessage({ id: 'aboutTitle' })} />
+    <Layout customSEO>
+      <SEO page={page} />
       <Container maxWidth="md" style={{ paddingTop: '2.5rem' }}>
         <Typography variant="h2" component="h1" gutterBottom align="center">
           About Me
@@ -140,7 +150,7 @@ const AboutPage = ({ data, intl }) => {
             <div className={classes.button}>
               <Link to="/contact">
                 <Button variant="contained" color="primary">
-                  {intl.formatMessage({ id: 'getInTouch' })}
+                  {intl.locale === 'en' ? 'Get in Touch!' : 'お問い合わせ'}
                 </Button>
               </Link>
             </div>
@@ -149,8 +159,8 @@ const AboutPage = ({ data, intl }) => {
         <h2>Skills</h2>
         <div className={classes.skills}>
           <div>
-            <h3>{intl.formatMessage({ id: 'index.design.title' })}</h3>
-            <h4>{intl.formatMessage({ id: 'index.design.field.dt' })}</h4>
+            <h3>{intl.locale === 'en' ? 'UI/UX Design' : 'UI/UXデザイン'}</h3>
+            <h4>{intl.locale === 'en' ? 'Things I enjoy designing:' : '得意分野'}</h4>
             <ul>
               <li>UX/UI</li>
               <li>Web Application</li>
@@ -160,7 +170,7 @@ const AboutPage = ({ data, intl }) => {
               <li>Logo</li>
               <li>Wireframe</li>
             </ul>
-            <h4>{intl.formatMessage({ id: 'index.design.tool.dt' })}</h4>
+            <h4>{intl.locale === 'en' ? 'Design Tools:' : 'ツール:'}</h4>
             <ul>
               <li>Adode Creative Suite</li>
               <li>Sketch</li>
@@ -170,14 +180,14 @@ const AboutPage = ({ data, intl }) => {
             </ul>
           </div>
           <div>
-            <h3>{intl.formatMessage({ id: 'index.dev.title' })}</h3>
-            <h4>{intl.formatMessage({ id: 'index.dev.language.dt' })}</h4>
+            <h3>{intl.locale === 'en' ? 'Front-end Dev' : 'フロントエンド開発'}</h3>
+            <h4>{intl.locale === 'en' ? 'Languages I speak:' : '言語:'}</h4>
             <ul>
               <li>HTML</li>
               <li>CSS</li>
               <li>JavaScript</li>
             </ul>
-            <h4>{intl.formatMessage({ id: 'index.dev.tool.dt' })}</h4>
+            <h4>{intl.locale === 'en' ? 'Dev Tools:' : 'ツール:'}</h4>
             <ul>
               <li>VSCode</li>
               <li>React</li>

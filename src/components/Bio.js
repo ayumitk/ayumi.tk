@@ -30,20 +30,28 @@ const Bio = () => {
           }
         }
       }
+      site: site {
+        siteMetadata {
+          author {
+            en
+            ja
+          }
+        }
+      }
     }
   `)
 
+  const name = intl.locale === 'en' ? data.site.siteMetadata.author.en : data.site.siteMetadata.author.ja
+
   return (
     <div className={classes.root}>
-      <Avatar
-        alt={intl.formatMessage({ id: 'name' })}
-        src={data.avatar.childImageSharp.fixed.src}
-        className={classes.large}
-      />
+      <Avatar alt={name} src={data.avatar.childImageSharp.fixed.src} className={classes.large} />
       <Typography variant="body2" component="p" style={{ marginLeft: '1rem' }}>
-        {intl.formatMessage({ id: 'name' })}
+        {name}
         <br />
-        {intl.formatMessage({ id: 'bio' })}
+        {intl.locale === 'en'
+          ? 'Freelance UI/UX designer, bookworm, craft beer lover, monster hunter based in Vancouver, Canada'
+          : 'フリーランスのUI/UXデザイナー。英語圏のロマンス･ミステリー小説にハマり、一向に減らない積読が悩み。カナダのバンクーバー在住。'}
       </Typography>
     </div>
   )

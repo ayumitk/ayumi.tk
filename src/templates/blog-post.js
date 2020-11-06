@@ -1,24 +1,16 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
-import { FormattedMessage } from 'gatsby-plugin-intl'
+import { useIntl } from 'gatsby-plugin-intl'
 import Img from 'gatsby-image'
-import {
-  makeStyles,
-  useTheme,
-  ExpansionPanel,
-  ExpansionPanelSummary,
-  ExpansionPanelDetails,
-  Typography,
-  Container,
-} from '@material-ui/core'
+import { makeStyles, Typography, Container, Accordion, AccordionSummary, AccordionDetails } from '@material-ui/core'
 import { ExpandMore } from '@material-ui/icons'
 import { DiscussionEmbed } from 'disqus-react'
-import myTheme from '../styles/theme'
+import theme from '../styles/theme'
 import { Layout, SEO, Bio, Tag } from '../components'
 import '../styles/prism.scss'
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles({
   root: {
     paddingTop: `1rem`,
     [theme.breakpoints.down('xs')]: {
@@ -61,7 +53,7 @@ const useStyles = makeStyles(theme => ({
       margin: 0,
       listStyle: `decimal`,
       paddingLeft: `2rem`,
-      color: myTheme.palette.primary.main,
+      color: theme.palette.primary.main,
       [theme.breakpoints.down('xs')]: {
         paddingLeft: `1rem`,
       },
@@ -81,7 +73,7 @@ const useStyles = makeStyles(theme => ({
       padding: `0.15rem 0`,
     },
     '& a': {
-      color: myTheme.palette.secondary.main,
+      color: theme.palette.secondary.main,
       textDecoration: `none`,
     },
     '& li p': {
@@ -207,7 +199,7 @@ const useStyles = makeStyles(theme => ({
     },
   },
   publishedDate: {
-    color: myTheme.palette.primary.main,
+    color: theme.palette.primary.main,
     textAlign: `center`,
     fontWeight: 700,
     fontSize: `1.25rem`,
@@ -232,25 +224,20 @@ const useStyles = makeStyles(theme => ({
     display: `flex`,
     marginBottom: `1rem`,
   },
-}))
+})
 
-const BlogPost = ({ data }) => {
+const BlogPostTemplate = ({ data }) => {
   const classes = useStyles()
-  const theme = useTheme()
+  const intl = useIntl()
+  const post = data.contentfulBlog
+  const { tags } = data.contentfulBlog
 
   const disqusConfig = {
     shortname: process.env.GATSBY_DISQUS_NAME,
-    config: { identifier: data.contentfulPost.path, title: data.contentfulPost.title },
+    config: { identifier: post.slug, title: post.title },
   }
 
-  const kebabCase = string =>
-    string
-      .match(/[A-Z]{2,}(?=[A-Z][a-z0-9]*|\b)|[A-Z]?[a-z0-9]*|[A-Z]|[0-9]+/g)
-      .filter(Boolean)
-      .map(x => x.toLowerCase())
-      .join('-')
-
-  if (!data.contentfulPost.title) {
+  if (!post.title) {
     return (
       <Layout>
         <Container maxWidth="md" style={{ paddingTop: `5rem` }}>
@@ -263,62 +250,51 @@ const BlogPost = ({ data }) => {
   }
 
   return (
-    <Layout>
-      <SEO
-        title={data.contentfulPost.title}
-        description={data.contentfulPost.description && data.contentfulPost.description}
-      />
+    <Layout customSEO>
+      <SEO post={post} article />
       <Container className={classes.postContainer}>
         <article className={classes.root}>
           {/* Blog Post Header */}
           <header>
-            <p className={classes.publishedDate}>{data.contentfulPost.publishedAt}</p>
-            <h1 className={classes.postTitle}>{data.contentfulPost.title}</h1>
-            <p className={classes.postDescription}>
-              {data.contentfulPost.description && data.contentfulPost.description}
-            </p>
+            <p className={classes.publishedDate}>{post.publishedAt}</p>
+            <h1 className={classes.postTitle}>{post.title}</h1>
+            <p className={classes.postDescription}>{post.description && post.description.description}</p>
             <div className={classes.postTag}>
-              {data.contentfulPost.tag &&
-                data.contentfulPost.tag
-                  .sort()
-                  .map(tag => <Tag label={`#${tag}`} to={`/blog/tag/${kebabCase(tag)}`} key={kebabCase(tag)} />)}
+              {tags && tags.map(tag => <Tag label={`#${tag.title}`} to={`/blog/tag/${tag.slug}/`} key={tag.slug} />)}
             </div>
           </header>
 
           {/* Hero Image */}
           <div className={classes.hero}>
-            <Img fluid={data.contentfulPost.hero.fluid} />
+            <Img fluid={post.hero.fluid} />
           </div>
 
           {/* Table of Contents */}
-          <ExpansionPanel className={classes.tableOfContents} defaultExpanded="true">
-            <ExpansionPanelSummary expandIcon={<ExpandMore />} aria-controls="panel1a-content" id="panel1a-header">
+          <Accordion defaultExpanded className={classes.tableOfContents}>
+            <AccordionSummary expandIcon={<ExpandMore />} aria-controls="panel1a-content" id="panel1a-header">
               <Typography className={classes.tableOfContentsHeading}>
-                <FormattedMessage id="tableOfContents" />
+                {intl.locale === 'en' ? 'Table of Contents' : '目次'}
               </Typography>
-            </ExpansionPanelSummary>
-            <ExpansionPanelDetails className={classes.tableOfContentsDetails}>
+            </AccordionSummary>
+            <AccordionDetails className={classes.tableOfContentsDetails}>
               <div
                 dangerouslySetInnerHTML={{
-                  __html: data.contentfulPost.childContentfulPostMarkdownTextNode.childMarkdownRemark.tableOfContents,
+                  __html: post.childContentfulBlogMarkdownTextNode.childMarkdownRemark.tableOfContents,
                 }}
               />
-            </ExpansionPanelDetails>
-          </ExpansionPanel>
+            </AccordionDetails>
+          </Accordion>
 
           {/* Markdown */}
           <div
             className={classes.content}
-            dangerouslySetInnerHTML={{ __html: data.contentfulPost.markdown.childMarkdownRemark.html }}
+            dangerouslySetInnerHTML={{ __html: post.markdown.childMarkdownRemark.html }}
           />
 
           {/* Blog Post Footer */}
           <footer style={{ marginTop: '5rem' }}>
             <div className={classes.postTag}>
-              {data.contentfulPost.tag &&
-                data.contentfulPost.tag
-                  .sort()
-                  .map(tag => <Tag label={`#${tag}`} to={`/blog/tag/${kebabCase(tag)}`} key={kebabCase(tag)} />)}
+              {tags && tags.map(tag => <Tag label={`#${tag.title}`} to={`/blog/tag/${tag.slug}/`} key={tag.slug} />)}
             </div>
             <Bio />
             <DiscussionEmbed {...disqusConfig} />
@@ -329,14 +305,19 @@ const BlogPost = ({ data }) => {
   )
 }
 
-export const query = graphql`
-  query ContentFulPost($slug: String, $locale: String) {
-    contentfulPost(path: { eq: $slug }, node_locale: { eq: $locale }) {
-      path
+export const pageQuery = graphql`
+  query BlogPostBySlug($slug: String, $locale: String) {
+    contentfulBlog(slug: { eq: $slug }, node_locale: { eq: $locale }) {
+      slug
       node_locale
       title
-      description
-      tag
+      description {
+        description
+      }
+      tags {
+        title
+        slug
+      }
       publishedAt(formatString: "MMMM DD, YYYY")
       markdown {
         childMarkdownRemark {
@@ -350,7 +331,7 @@ export const query = graphql`
           ...GatsbyContentfulFluid
         }
       }
-      childContentfulPostMarkdownTextNode {
+      childContentfulBlogMarkdownTextNode {
         childMarkdownRemark {
           tableOfContents(absolute: false, maxDepth: 3)
         }
@@ -359,10 +340,10 @@ export const query = graphql`
   }
 `
 
-BlogPost.propTypes = {
+BlogPostTemplate.propTypes = {
   data: PropTypes.shape({
-    contentfulPost: PropTypes.object,
+    contentfulBlog: PropTypes.object,
   }).isRequired,
 }
 
-export default BlogPost
+export default BlogPostTemplate

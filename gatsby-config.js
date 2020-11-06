@@ -18,10 +18,23 @@ if (process.env.CONTEXT !== 'production') {
 
 module.exports = {
   siteMetadata: {
-    title: `Ayumi Takahashi`,
-    description: ``,
-    author: `@ayumitk__`,
-    siteUrl: `https://ayumi.tk`,
+    pathPrefix: '/',
+    siteTitle: {
+      en: 'Freelance UI/UX Designer, Ayumi Takahashi',
+      ja: 'フリーランス UI/UXデザイナー 高橋あゆみ',
+    },
+    siteUrl: 'https://ayumi.tk',
+    siteDescription: {
+      en: 'Freelance UI/UX Designer with 10+ years of experience based in Vancouver, Canada.',
+      ja: '10年以上の経験を持ち、カナダ、バンクーバーを拠点に活動する、フリーランスのUI/UXデザイナーです',
+    },
+    author: {
+      en: 'Ayumi Takahashi',
+      ja: '高橋あゆみ',
+    },
+    siteBanner: '/og-image.png',
+    siteLogo: '/logo.png',
+    userTwitter: '@ayumitk__',
   },
   plugins: [
     {
