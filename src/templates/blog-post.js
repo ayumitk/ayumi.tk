@@ -9,7 +9,8 @@ import { DiscussionEmbed } from 'disqus-react'
 import Prism from 'prismjs'
 import theme from '../styles/theme'
 import { Layout, SEO, Bio, Tag } from '../components'
-import '../styles/prism.scss'
+// import '../styles/prism.scss'
+import Markdown from '../components/Markdown'
 
 const useStyles = makeStyles({
   root: {
@@ -67,6 +68,7 @@ const useStyles = makeStyles({
     '& li ul': {
       listStyle: `disc`,
       paddingLeft: `1.25rem`,
+      margin: `0.25rem 0 0 0`,
     },
     '& li li': {
       fontWeight: '400',
@@ -76,9 +78,6 @@ const useStyles = makeStyles({
     '& a': {
       color: theme.palette.secondary.main,
       textDecoration: `none`,
-    },
-    '& li p': {
-      margin: `0 0 0.25rem 0`,
     },
   },
   tableOfContentsHeading: {
@@ -93,109 +92,6 @@ const useStyles = makeStyles({
   tableOfContentsDetails: {
     borderTop: `solid 1px #ccc`,
     display: `block`,
-  },
-  content: {
-    fontSize: `1.125rem`,
-    lineHeight: `1.8`,
-    [theme.breakpoints.down('xs')]: {
-      fontSize: `1rem`,
-    },
-    '& strong': {
-      background: `linear-gradient(transparent 70%, #ffdad9 70%)`,
-    },
-    '& a': {
-      color: `#0062DA`,
-    },
-    '& .gatsby-resp-image-wrapper': {
-      maxWidth: `680px !important`,
-    },
-    '& img': {
-      width: `100%`,
-    },
-    '& hr': {
-      display: `block`,
-      height: `4px`,
-      width: `120px`,
-      backgroundColor: `rgba(33, 37, 41, 0.1)`,
-      margin: `5rem auto`,
-      borderWidth: `0px`,
-      borderRadius: `4px`,
-      [theme.breakpoints.down('xs')]: {
-        margin: `4rem auto`,
-      },
-    },
-    '& h2, & h3': {
-      marginTop: `8rem`,
-      marginBottom: `-0.75rem`,
-      [theme.breakpoints.down('xs')]: {
-        marginTop: `6rem`,
-      },
-    },
-    '& h2': {
-      fontSize: `1.75rem`,
-      lineHeight: `1.25`,
-      [theme.breakpoints.down('xs')]: {
-        fontSize: `1.5rem`,
-      },
-    },
-    '& h3': {
-      fontSize: `1.375rem`,
-      lineHeight: `1.25`,
-      [theme.breakpoints.down('xs')]: {
-        fontSize: `1.25rem`,
-      },
-    },
-    '& p, & ul, & ol, & h2 + h3, & table, & .code-toolbar, & .gatsby-code-title': {
-      marginTop: `3rem`,
-      [theme.breakpoints.down('xs')]: {
-        marginTop: `2rem`,
-      },
-    },
-    '& .gatsby-code-title + .code-toolbar': {
-      marginTop: 0,
-    },
-    '& hr + h2': {
-      marginTop: `5rem`,
-      [theme.breakpoints.down('xs')]: {
-        marginTop: `4rem`,
-      },
-    },
-    '& ol': {
-      padding: `2rem 3rem`,
-      backgroundColor: `#eef1f5`,
-      border: `solid 2px #d7e0ea`,
-      '& li': {
-        borderBottom: `solid 1px #d7e0ea`,
-        padding: `0.5rem 0`,
-        color: `#0062DA`,
-      },
-    },
-    '& blockquote': {
-      background: `rgba(0, 0, 0, 0.05)`,
-      padding: `1.5rem 2rem`,
-      borderLeft: `3px solid rgb(28, 27, 32)`,
-      fontSize: `1rem`,
-      margin: `3rem 0`,
-      lineHeight: `1.6`,
-      [theme.breakpoints.down('xs')]: {
-        padding: `1rem 1.5rem`,
-      },
-      '& p': {
-        margin: 0,
-      },
-    },
-    '& table': {
-      width: `100%`,
-      borderCollapse: `collapse`,
-      borderSpacing: 0,
-    },
-    '& table th, & table td': {
-      border: `solid 1px #CCC`,
-      padding: `0.5rem`,
-    },
-    '& table tbody td': {
-      textAlign: `center`,
-    },
   },
   publishedDate: {
     color: theme.palette.primary.main,
@@ -239,6 +135,7 @@ const BlogPostTemplate = ({ data }) => {
   const intl = useIntl()
   const post = data.contentfulBlog
   const { tags } = data.contentfulBlog
+  const tableOfContents = post.markdown.childMdx.tableOfContents.items
 
   const disqusConfig = {
     shortname: process.env.GATSBY_DISQUS_NAME,
@@ -294,19 +191,29 @@ const BlogPostTemplate = ({ data }) => {
               </Typography>
             </AccordionSummary>
             <AccordionDetails className={classes.tableOfContentsDetails}>
-              <div
-                dangerouslySetInnerHTML={{
-                  __html: post.childContentfulBlogMarkdownTextNode.childMarkdownRemark.tableOfContents,
-                }}
-              />
+              <ul>
+                {tableOfContents.map(link => (
+                  <li key={link.url}>
+                    <a href={link.url}>{link.title}</a>
+                    {link.items ? (
+                      <ul>
+                        {link.items.map(sublink => (
+                          <li key={sublink.url}>
+                            <a href={sublink.url}>{sublink.title}</a>
+                          </li>
+                        ))}
+                      </ul>
+                    ) : (
+                      ''
+                    )}
+                  </li>
+                ))}
+              </ul>
             </AccordionDetails>
           </Accordion>
 
           {/* Markdown */}
-          <div
-            className={classes.content}
-            dangerouslySetInnerHTML={{ __html: post.markdown.childMarkdownRemark.html }}
-          />
+          <Markdown>{post.markdown.childMdx.body}</Markdown>
 
           {/* Blog Post Footer */}
           <footer style={{ marginTop: '5rem' }}>
@@ -338,8 +245,9 @@ export const pageQuery = graphql`
       publishedAt(formatString: "MMMM DD, YYYY")
       updatedAt(formatString: "MMMM DD, YYYY")
       markdown {
-        childMarkdownRemark {
-          html
+        childMdx {
+          tableOfContents(maxDepth: 3)
+          body
         }
       }
       hero {
@@ -347,11 +255,6 @@ export const pageQuery = graphql`
         description
         fluid(maxWidth: 1400) {
           ...GatsbyContentfulFluid
-        }
-      }
-      childContentfulBlogMarkdownTextNode {
-        childMarkdownRemark {
-          tableOfContents(absolute: false, maxDepth: 3)
         }
       }
     }

@@ -5,6 +5,7 @@ import Img from 'gatsby-image'
 import { makeStyles, Container, Typography } from '@material-ui/core'
 import { DiscussionEmbed } from 'disqus-react'
 import { Layout, SEO, Tag, Bio } from '../components'
+import Markdown from '../components/Markdown'
 
 const useStyles = makeStyles({
   root: {},
@@ -67,10 +68,7 @@ const WorkPost = ({ data }) => {
           </header>
 
           {/* Markdown */}
-          <div
-            className={classes.content}
-            dangerouslySetInnerHTML={{ __html: post.markdown.childMarkdownRemark.html }}
-          />
+          <Markdown>{post.markdown.childMdx.body}</Markdown>
 
           {/* Blog Post Footer */}
           <footer className={classes.footer}>
@@ -110,8 +108,8 @@ export const query = graphql`
         description
       }
       markdown {
-        childMarkdownRemark {
-          html
+        childMdx {
+          body
         }
       }
       hero {
