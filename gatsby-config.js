@@ -52,6 +52,13 @@ module.exports = {
         plugins: [
           'gatsby-remark-code-titles', // IMPORTANT: this must be ahead of other plugins that use code blocks
           {
+            resolve: 'gatsby-remark-external-links',
+            options: {
+              target: '_blank',
+              rel: 'noopener',
+            },
+          },
+          {
             resolve: 'gatsby-remark-code-buttons',
             options: {
               svgIcon:

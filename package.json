@@ -25,6 +25,7 @@
     "gatsby-remark-code-buttons": "^2.0.4",
     "gatsby-remark-code-titles": "^1.1.0",
     "gatsby-remark-copy-linked-files": "^2.2.0",
+    "gatsby-remark-external-links": "0.0.4",
     "gatsby-remark-images": "^3.2.0",
     "gatsby-remark-images-contentful": "^2.3.20",
     "gatsby-remark-images-medium-zoom": "^1.4.0",
