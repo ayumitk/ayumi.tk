@@ -4,7 +4,7 @@ import { graphql } from 'gatsby'
 import { useIntl } from 'gatsby-plugin-intl'
 import Img from 'gatsby-image'
 import { makeStyles, Typography, Container, Accordion, AccordionSummary, AccordionDetails } from '@material-ui/core'
-import { ExpandMore } from '@material-ui/icons'
+import { ExpandMore, Update } from '@material-ui/icons'
 import { DiscussionEmbed } from 'disqus-react'
 import theme from '../styles/theme'
 import { Layout, SEO, Bio, Tag } from '../components'
@@ -220,9 +220,18 @@ const useStyles = makeStyles({
   postDescription: {
     color: `#666`,
   },
+  updatedAt: {
+    marginBottom: `1rem`,
+    '& svg': {
+      width: `1rem`,
+      height: `1rem`,
+      verticalAlign: `middle`,
+      marginRight: `0.25rem`,
+    },
+  },
   postTag: {
     display: `flex`,
-    marginBottom: `1rem`,
+    marginBottom: `0.5rem`,
   },
 })
 
@@ -262,6 +271,10 @@ const BlogPostTemplate = ({ data }) => {
             <div className={classes.postTag}>
               {tags && tags.map(tag => <Tag label={`#${tag.title}`} to={`/blog/tag/${tag.slug}/`} key={tag.slug} />)}
             </div>
+            <Typography variant="body2" className={classes.updatedAt}>
+              <Update />
+              Updated at {post.updatedAt}
+            </Typography>
           </header>
 
           {/* Hero Image */}
@@ -319,6 +332,7 @@ export const pageQuery = graphql`
         slug
       }
       publishedAt(formatString: "MMMM DD, YYYY")
+      updatedAt(formatString: "MMMM DD, YYYY")
       markdown {
         childMarkdownRemark {
           html
