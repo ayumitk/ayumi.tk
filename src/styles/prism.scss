@@ -1,7 +1,15 @@
+code {
+  display: inline-block;
+  color: rgb(28, 27, 32);
+  padding: 0 0.35rem;
+  background: rgba(0, 0, 0, 0.075);
+  word-break: break-all;
+}
+
 pre[class*="language-"] {
   margin: 0;
   border-radius: 0;
-  font-size: 1rem;
+  font-size: 0.937rem;
 }
 
 pre code {

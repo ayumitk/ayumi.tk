@@ -106,27 +106,6 @@ const useStyles = makeStyles({
     '& a': {
       color: `#0062DA`,
     },
-    // '& code': {
-    //   display: `inline-block`,
-    //   color: `rgb(28, 27, 32)`,
-    //   padding: `0.15rem 0.35rem`,
-    //   background: `rgba(0, 0, 0, 0.075)`,
-    //   wordBreak: `break-all`,
-    // },
-    // '& pre code': {
-    //   color: `#cbccc6`,
-    //   background: `transparent`,
-    //   padding: `1rem`,
-    // },
-    // '& code a': {
-    //   color: `#cbccc6`,
-    //   pointerEvents: `none`,
-    //   textDecoration: `none`,
-    // },
-    // '& pre': {
-    //   background: `#1f2430`,
-    //   lineHeight: `1.5`,
-    // },
     '& .gatsby-resp-image-wrapper': {
       maxWidth: `680px !important`,
     },
@@ -166,11 +145,14 @@ const useStyles = makeStyles({
         fontSize: `1.25rem`,
       },
     },
-    '& p, & ul, & ol, & h2 + h3, & table': {
+    '& p, & ul, & ol, & h2 + h3, & table, & .code-toolbar, & .gatsby-code-title': {
       marginTop: `3rem`,
       [theme.breakpoints.down('xs')]: {
         marginTop: `2rem`,
       },
+    },
+    '& .gatsby-code-title + .code-toolbar': {
+      marginTop: 0,
     },
     '& hr + h2': {
       marginTop: `5rem`,
