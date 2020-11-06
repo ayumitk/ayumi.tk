@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
 import { useIntl } from 'gatsby-plugin-intl'
@@ -6,6 +6,7 @@ import Img from 'gatsby-image'
 import { makeStyles, Typography, Container, Accordion, AccordionSummary, AccordionDetails } from '@material-ui/core'
 import { ExpandMore, Update } from '@material-ui/icons'
 import { DiscussionEmbed } from 'disqus-react'
+import Prism from 'prismjs'
 import theme from '../styles/theme'
 import { Layout, SEO, Bio, Tag } from '../components'
 import '../styles/prism.scss'
@@ -261,6 +262,11 @@ const BlogPostTemplate = ({ data }) => {
     shortname: process.env.GATSBY_DISQUS_NAME,
     config: { identifier: post.slug, title: post.title },
   }
+
+  useEffect(() => {
+    // call the highlightAll() function to style our code blocks
+    Prism.highlightAll()
+  })
 
   if (!post.title) {
     return (
