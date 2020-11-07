@@ -3,9 +3,9 @@ import { MDXRenderer } from 'gatsby-plugin-mdx'
 import { MDXProvider } from '@mdx-js/react'
 import { makeStyles } from '@material-ui/core'
 import theme from '../styles/theme'
-import { Star, AmazonBook } from './shortcodes'
+import { AmazonBook } from './shortcodes'
 
-const shortcodes = { Star, AmazonBook }
+const shortcodes = { AmazonBook }
 
 const useStyles = makeStyles({
   root: {

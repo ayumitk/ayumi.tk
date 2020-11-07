@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { makeStyles, Card, CardContent, Button } from '@material-ui/core'
 import theme from '../styles/theme'
 
-const shortcodes = { Star, AmazonBook }
+const shortcodes = { AmazonBook }
 
 const useStyles = makeStyles({
   root: {},
@@ -45,8 +45,6 @@ const useStyles = makeStyles({
   },
 })
 
-const Star = ({ children }) => <div style={{ background: `red` }}>{children}</div>
-
 const AmazonBook = ({ books }) => {
   const classes = useStyles()
   return (
@@ -76,7 +74,7 @@ const AmazonBook = ({ books }) => {
   )
 }
 
-export { Star, AmazonBook }
+export { AmazonBook }
 
 AmazonBook.propTypes = {
   books: PropTypes.array.isRequired,
