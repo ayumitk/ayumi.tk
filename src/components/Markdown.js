@@ -3,9 +3,9 @@ import { MDXRenderer } from 'gatsby-plugin-mdx'
 import { MDXProvider } from '@mdx-js/react'
 import { makeStyles } from '@material-ui/core'
 import theme from '../styles/theme'
-import { AmazonBook } from './shortcodes'
+import { AmazonBook, Tomato } from './shortcodes'
 
-const shortcodes = { AmazonBook }
+const shortcodes = { AmazonBook, Tomato }
 
 const useStyles = makeStyles({
   root: {
@@ -51,6 +51,9 @@ const useStyles = makeStyles({
       [theme.breakpoints.down('xs')]: {
         fontSize: `1.5rem`,
       },
+    },
+    '& .anchor.before': {
+      display: `none`,
     },
     '& h3': {
       fontSize: `1.375rem`,
@@ -143,7 +146,6 @@ const useStyles = makeStyles({
 const Markdown = ({ children }) => {
   const classes = useStyles()
   return (
-    // We add a 'markdown' class so we can apply custom styles
     <div className={classes.root}>
       <MDXProvider components={shortcodes}>
         <MDXRenderer>{children}</MDXRenderer>
