@@ -1,9 +1,9 @@
 {
-  "name": "ayumi.tk",
+  "name": "ayumitk.com",
   "private": true,
   "description": "",
   "version": "0.1.0",
-  "author": "Ayumi Takahashi <hello@ayumi.tk>",
+  "author": "Ayumi Takahashi <hello@ayumitk.com>",
   "dependencies": {
     "@material-ui/core": "^4.11.0",
     "@material-ui/icons": "^4.9.1",

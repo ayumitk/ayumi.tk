@@ -23,7 +23,7 @@ module.exports = {
       en: 'Freelance UI/UX Designer, Ayumi Takahashi',
       ja: 'フリーランス UI/UXデザイナー 高橋あゆみ',
     },
-    siteUrl: 'https://ayumi.tk',
+    siteUrl: 'https://ayumitk.com',
     siteDescription: {
       en: 'Freelance UI/UX Designer with 10+ years of experience based in Vancouver, Canada.',
       ja: '10年以上の経験を持ち、カナダ、バンクーバーを拠点に活動する、フリーランスのUI/UXデザイナーです',
@@ -115,7 +115,7 @@ module.exports = {
       resolve: `gatsby-plugin-manifest`,
       options: {
         name: `Ayumi Takahashi - Freelance UI/UX Designer`,
-        short_name: `ayumi.tk`,
+        short_name: `ayumitk.com`,
         start_url: `/`,
         background_color: `#FF5851`,
         theme_color: `#FF5851`,

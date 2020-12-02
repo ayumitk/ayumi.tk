@@ -73,8 +73,8 @@ export default function Footer() {
         </Link>
       </div>
       <p className={classes.email}>
-        <Link href="mailto:hello@ayumi.tk " rel="external">
-          <MailOutlineIcon /> hello@ayumi.tk
+        <Link href="mailto:hello@ayumitk.com" rel="external">
+          <MailOutlineIcon /> hello@ayumitk.com
         </Link>
       </p>
       <p>
