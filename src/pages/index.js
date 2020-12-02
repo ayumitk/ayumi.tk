@@ -4,7 +4,7 @@ import { graphql } from 'gatsby'
 import { injectIntl, Link } from 'gatsby-plugin-intl'
 import { makeStyles, Button, Typography, Container } from '@material-ui/core'
 import { ChevronRight } from '@material-ui/icons'
-import { Layout, WorkGrid, BlogGrid } from '../components'
+import { Layout, WorkGrid, BlogGrid, SEO } from '../components'
 import theme from '../styles/theme'
 
 const useStyles = makeStyles({
@@ -72,7 +72,8 @@ const RootIndex = ({ intl, data }) => {
   const { locale } = intl
 
   return (
-    <Layout>
+    <Layout customSEO>
+      <SEO />
       <h1 className={classes.hero}>
         <strong>
           Hello<span>.</span>

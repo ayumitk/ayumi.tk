@@ -13,7 +13,9 @@ const BlogIndex = ({ data, intl }) => {
     allTags = allTags.concat(post.tags)
   })
 
-  const tags = allTags.filter((item, index, array) => array.findIndex(item2 => item.slug === item2.slug) === index)
+  const allTags2 = allTags.filter(item => item !== null)
+
+  const tags = allTags2.filter((item, index, array) => array.findIndex(item2 => item.slug === item2.slug) === index)
 
   const page = {
     title: intl.locale === 'en' ? 'Blog' : 'ブログ記事',

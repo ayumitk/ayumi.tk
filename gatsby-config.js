@@ -20,7 +20,7 @@ module.exports = {
   siteMetadata: {
     pathPrefix: '/',
     siteTitle: {
-      en: 'Freelance UI/UX Designer, Ayumi Takahashi',
+      en: 'Ayumi Takahashi, Freelance UI/UX Designer',
       ja: 'フリーランス UI/UXデザイナー 高橋あゆみ',
     },
     siteUrl: 'https://ayumitk.com',
