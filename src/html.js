@@ -5,14 +5,14 @@ export default function HTML(props) {
   return (
     <html {...props.htmlAttributes}>
       <head>
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-QMXH17MBXK" />
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-KKMR09WXXN" />
         <script
           dangerouslySetInnerHTML={{
             __html: `
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', 'G-QMXH17MBXK');
+            gtag('config', 'G-KKMR09WXXN');
         `,
           }}
         />
