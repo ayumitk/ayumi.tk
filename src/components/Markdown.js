@@ -62,6 +62,16 @@ const useStyles = makeStyles({
         fontSize: `1.25rem`,
       },
     },
+    '& h4': {
+      marginTop: `4rem`,
+      marginBottom: `-1.75rem`,
+      fontSize: `1.25rem`,
+      lineHeight: `1.25`,
+      [theme.breakpoints.down('xs')]: {
+        marginTop: `3rem`,
+        fontSize: `1.15rem`,
+      },
+    },
     '& p, & ul, & ol, & h2 + h3, & table, & .code-toolbar, & .gatsby-code-title': {
       marginTop: `3rem`,
       [theme.breakpoints.down('xs')]: {
