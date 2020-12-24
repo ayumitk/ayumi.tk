@@ -3,9 +3,9 @@ import { MDXRenderer } from 'gatsby-plugin-mdx'
 import { MDXProvider } from '@mdx-js/react'
 import { makeStyles } from '@material-ui/core'
 import theme from '../styles/theme'
-import { AmazonBook, Tomato } from './shortcodes'
+import { AmazonBook, Tomato, LinkCard } from './shortcodes'
 
-const shortcodes = { AmazonBook, Tomato }
+const shortcodes = { AmazonBook, Tomato, LinkCard }
 
 const useStyles = makeStyles({
   root: {
@@ -107,8 +107,14 @@ const useStyles = makeStyles({
       [theme.breakpoints.down('xs')]: {
         padding: `1rem 1.5rem`,
       },
-      '& p': {
+      '& p, & ul': {
         margin: 0,
+      },
+      '& ul': {
+        paddingLeft: `1.25rem`,
+      },
+      '& p + p': {
+        marginTop: `1.5rem`,
       },
     },
     '& table': {

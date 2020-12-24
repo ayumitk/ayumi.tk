@@ -9,6 +9,7 @@ import 'typeface-montserrat'
 const myTheme = createMuiTheme({
   palette: {
     primary: {
+      light: '#ff817c',
       main: '#FF5851',
     },
     secondary: {
