@@ -4,12 +4,20 @@ import { makeStyles, Card, CardContent, Button } from '@material-ui/core'
 import theme from '../styles/theme'
 
 const useStyles = makeStyles({
-  root: {},
-  amazonBooks: {
+  amazonBookImage: {
+    lineHeight: 0,
+    '& img': {
+      width: `100px !important`,
+    },
+  },
+  linkCard: {
     '& .MuiCardContent-root': {
       display: `flex`,
       alignItems: `center`,
       border: `solid 5px transparent`,
+      [theme.breakpoints.down('xs')]: {
+        padding: `10px`,
+      },
     },
     '& a': {
       display: `block`,
@@ -25,47 +33,13 @@ const useStyles = makeStyles({
       marginTop: `1rem`,
     },
   },
-  amazonBookImage: {
-    lineHeight: 0,
-    '& img': {
-      width: `100px !important`,
-    },
-  },
-  amazonBookInfo: {
-    flex: 1,
-    marginLeft: `1rem`,
-    '& p': {
-      margin: `0 !important`,
-    },
-    '& .MuiButton-root': {
-      marginTop: theme.spacing(1),
-      boxShadow: `0px 3px 1px -2px rgba(0,0,0,0.2)`,
-    },
-  },
-  amazonBookTitle: {
-    fontWeight: `600`,
-  },
-  linkCard: {
-    '& .MuiCardContent-root': {
-      display: `flex`,
-      alignItems: `center`,
-      border: `solid 5px transparent`,
-    },
-    '& a': {
-      display: `block`,
-      marginTop: `3rem`,
-      textDecoration: `none`,
-      fontSize: `1rem`,
-      lineHeight: `1.5`,
-      '&:hover .MuiCardContent-root': {
-        border: `solid 5px ${theme.palette.primary.light}`,
-      },
-    },
-  },
   linkCardImage: {
     lineHeight: 0,
     '& img': {
       width: `150px !important`,
+      [theme.breakpoints.down('xs')]: {
+        width: `100px !important`,
+      },
     },
   },
   linkCardInfo: {
@@ -81,16 +55,20 @@ const useStyles = makeStyles({
   },
   linkCardTitle: {
     fontWeight: `bold`,
+    lineHeight: `1.25`,
   },
   linkCardDescription: {
     fontSize: `0.75rem`,
+    [theme.breakpoints.down('xs')]: {
+      display: `none`,
+    },
   },
 })
 
 const AmazonBook = ({ books }) => {
   const classes = useStyles()
   return (
-    <div className={classes.amazonBooks}>
+    <div className={classes.linkCard}>
       {books.map(book => (
         <a href={book.src} target="_blank" rel="noopener noreferrer" key={book.asin}>
           <Card>
@@ -101,8 +79,8 @@ const AmazonBook = ({ books }) => {
                   alt={`${book.title} - ${book.author}`}
                 />
               </div>
-              <div className={classes.amazonBookInfo}>
-                <p className={classes.amazonBookTitle}>{book.title}</p>
+              <div className={classes.linkCardInfo}>
+                <p className={classes.linkCardTitle}>{book.title}</p>
                 <p>作者 : {book.author}</p>
                 <Button variant="contained" color="primary" component="span">
                   Amazonで購入
