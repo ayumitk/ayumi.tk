@@ -122,7 +122,7 @@ const LinkCard = ({ url, img, title, description }) => {
   const classes = useStyles()
   return (
     <div className={classes.linkCard}>
-      <a href={url}>
+      <a href={url} target="_blank" rel="noopener noreferrer">
         <Card>
           <CardContent>
             <div className={classes.linkCardImage}>
